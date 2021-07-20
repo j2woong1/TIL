@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CogSimProj>
+  <ProjectInfo ID="ed8d7cbc-cee8-47c2-99a5-191ce863fe83" ItemID="15" Type="RobotSimProject" Version="2.6.0" />
+  <ProjectData>
+    <Details Creator="" Company="" Description="" Email="" Website="" />
+    <State CurrentEnvironment="268435456" />
+    <Directories>
+      <Directory DirectoryName="Materials" />
+      <Directory DirectoryName="Meshes" />
+      <Directory DirectoryName="Resources">
+        <Dependency Name="5762_mini_plane.ldr.rres" ItemID="5" Type="Resource" Path="" Link="False" />
+        <Dependency Name="landrover_defender_2.ldr.rres" ItemID="7" Type="Resource" Path="" Link="False" />
+        <Dependency Name="Educator_Discovery.rres" ItemID="9" Type="Resource" Path="" Link="False" />
+        <Dependency Name="21019_eiffel_tower.ldr.rres" ItemID="14" Type="Resource" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Scripts" />
+      <Directory DirectoryName="Textures">
+        <Dependency Name="191231_ssafy_logo_파랑.jpg" ItemID="1" Type="Texture" Path="" Link="False" />
+        <Dependency Name="191231_ssafy_logo_파랑 (좌우반전).jpg" ItemID="2" Type="Texture" Path="" Link="False" />
+        <Dependency Name="191231_ssafy_logo_01 (좌우반전).png" ItemID="3" Type="Texture" Path="" Link="False" />
+        <Dependency Name="Curved.png" ItemID="10" Type="Texture" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Environments">
+        <Dependency Name="Maze (EV3).rsim" ItemID="268435456" Type="Environment" Path="" Link="False" />
+      </Directory>
+      <EV3Directory DirectoryName="SSAFY Homecoming Bot" />
+    </Directories>
+  </ProjectData>
+</CogSimProj>

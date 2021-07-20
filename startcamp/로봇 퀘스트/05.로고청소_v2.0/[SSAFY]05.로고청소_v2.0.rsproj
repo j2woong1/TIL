@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CogSimProj>
+  <ProjectInfo ID="29bcd0ba-7f48-442f-adfb-066d6a8022c3" ItemID="4" Type="RobotSimProject" Version="2.6.0" />
+  <ProjectData>
+    <Details Creator="" Company="" Description="" Email="" Website="" />
+    <State CurrentEnvironment="268435456" />
+    <Directories>
+      <Directory DirectoryName="Materials" />
+      <Directory DirectoryName="Meshes" />
+      <Directory DirectoryName="Resources" />
+      <Directory DirectoryName="Scripts" />
+      <Directory DirectoryName="Textures">
+        <Dependency Name="191231_ssafy_logo_01 (좌우반전).png" ItemID="1" Type="Texture" Path="" Link="False" />
+        <Dependency Name="사본 -191231_ssafy_logo_01 (좌우반전).jpg" ItemID="2" Type="Texture" Path="" Link="False" />
+        <Dependency Name="Black.png" ItemID="3" Type="Texture" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Environments">
+        <Dependency Name="SSAFY_Cleanup(Onstage).rsim" ItemID="268435456" Type="Environment" Path="" Link="False" />
+      </Directory>
+      <EV3Directory DirectoryName="SSAFY Cleaning Bot" />
+    </Directories>
+  </ProjectData>
+</CogSimProj>

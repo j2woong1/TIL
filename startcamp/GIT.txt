@@ -1,0 +1,344 @@
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new
+$ git branch word_race_new
+fatal: not a git repository (or any of the parent directories): .git
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new
+$ git clone https://github.com/mein-FIGUR/word_race.git .
+Cloning into '.'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 9 (delta 0), reused 9 (delta 0), pack-reused 0
+Receiving objects: 100% (9/9), done.
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git branch word_race_new
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git checkout word_race_new
+Switched to branch 'word_race_new'
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ vi word_race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ git add .
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ git commit -m "word_race.txt"
+[word_race_new 24534b3] word_race.txt
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ git push
+fatal: The current branch word_race_new has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin word_race_new
+
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ ^C
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ git push origin word_race_new
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Writing objects: 100% (3/3), 265 bytes | 15.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'word_race_new' on GitHub by visiting:
+remote:      https://github.com/mein-FIGUR/word_race/pull/new/word_race_new
+remote:
+To https://github.com/mein-FIGUR/word_race.git
+ * [new branch]      word_race_new -> word_race_new
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ git pull
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), 868 bytes | 13.00 KiB/s, done.
+From https://github.com/mein-FIGUR/word_race
+   a977112..5ec6b3f  master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> word_race_new
+
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ git log
+commit 24534b3fa20f4bcaca03b37b1c1fb2054aebe5b0 (HEAD -> word_race_new, origin/word_race_new)
+Author: Ji Woong Jeong <j2woong1@gmail.com>
+Date:   Fri Jul 16 14:52:09 2021 +0900
+
+    word_race.txt
+
+commit a97711285069ea41ae9cba1bbf23686f98f6a9c5 (master)
+Author: Ji Woong Jeong <j2woong1@gmail.com>
+Date:   Fri Jul 16 14:42:23 2021 +0900
+
+    word_race.txt
+
+commit 9f2bdead71ae2721f5d2e93dae2a5587644412fb
+Author: mein-FIGUR <mein.figur@gmail.com>
+Date:   Fri Jul 16 14:28:07 2021 +0900
+
+    Word game start
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_race_new)
+$ git checkout master
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 3 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git branch -d word_race_new
+error: The branch 'word_race_new' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D word_race_new'.
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git branch -D word_race_new
+Deleted branch word_race_new (was 24534b3).
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git pull origin master
+From https://github.com/mein-FIGUR/word_race
+ * branch            master     -> FETCH_HEAD
+Updating a977112..5ec6b3f
+Fast-forward
+ word_race.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git checkout -b master
+fatal: A branch named 'master' already exists.
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git checkout word_Race
+error: pathspec 'word_Race' did not match any file(s) known to git
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git checkout -b word_Race
+Switched to a new branch 'word_Race'
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_Race)
+$ vi word.race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_Race)
+$ vi word_race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_Race)
+$ git push
+fatal: The current branch word_Race has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin word_Race
+
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_Race)
+$ git add .
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_Race)
+$ git commit -m "word_race.txt"
+[word_Race 496a9f9] word_race.txt
+ 2 files changed, 1 insertion(+)
+ create mode 100644 word.race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_Race)
+$ git push origin word_Race
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 313 bytes | 26.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'word_Race' on GitHub by visiting:
+remote:      https://github.com/mein-FIGUR/word_race/pull/new/word_Race
+remote:
+To https://github.com/mein-FIGUR/word_race.git
+ * [new branch]      word_Race -> word_Race
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_Race)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git branch -d word_Race
+error: The branch 'word_Race' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D word_Race'.
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git branch -D word_Race
+Deleted branch word_Race (was 496a9f9).
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git pull origin master
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), 629 bytes | 37.00 KiB/s, done.
+From https://github.com/mein-FIGUR/word_race
+ * branch            master     -> FETCH_HEAD
+   5ec6b3f..a913c8f  master     -> origin/master
+Updating 5ec6b3f..a913c8f
+Fast-forward
+ word.race.txt | 0
+ word_race.txt | 1 +
+ 2 files changed, 1 insertion(+)
+ create mode 100644 word.race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git checkout -b word_rAce
+Switched to a new branch 'word_rAce'
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_rAce)
+$ git pull
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), 930 bytes | 15.00 KiB/s, done.
+From https://github.com/mein-FIGUR/word_race
+   a913c8f..ffbafd3  master     -> origin/master
+ * [new branch]      word_new   -> origin/word_new
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> word_rAce
+
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_rAce)
+$ vi word_race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_rAce)
+$ git pull origin master
+From https://github.com/mein-FIGUR/word_race
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+        word_race.txt
+Please commit your changes or stash them before you merge.
+Aborting
+Updating a913c8f..ffbafd3
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_rAce)
+$ vi word_race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (word_rAce)
+$ git checkout master
+Switched to branch 'master'
+M       word_race.txt
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git pull origin master
+From https://github.com/mein-FIGUR/word_race
+ * branch            master     -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by merge:
+        word_race.txt
+Please commit your changes or stash them before you merge.
+Aborting
+Updating a913c8f..ffbafd3
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git log
+commit a913c8f1291c49fd0030849821f78af717070a8a (HEAD -> master, word_rAce)
+Merge: 5ec6b3f 496a9f9
+Author: mein_figur <82279503+mein-FIGUR@users.noreply.github.com>
+Date:   Fri Jul 16 15:05:40 2021 +0900
+commit a913c8f1291c49fd0030849821f78af717070a8a (HEAD -> master, word_rAce)
+Merge: 5ec6b3f 496a9f9
+Author: mein_figur <82279503+mein-FIGUR@users.noreply.github.com>
+Date:   Fri Jul 16 15:05:40 2021 +0900
+
+    Merge pull request #2 from mein-FIGUR/word_Race
+
+    word_race.txt
+
+commit 496a9f995c5a163c3e8e810db3b86fbbbcde9925 (origin/word_Race)
+Author: Ji Woong Jeong <j2woong1@gmail.com>
+Date:   Fri Jul 16 15:04:05 2021 +0900
+
+    word_race.txt
+
+commit 5ec6b3f8eba9946393a64f6e65958f91e87e9a48
+Author: mein-FIGUR <mein.figur@gmail.com>
+Date:   Fri Jul 16 14:56:55 2021 +0900
+
+    Add word
+
+commit caa35bd5a251e5a9a92c1661ec55b9b65f4dead6
+Merge: a977112 24534b3
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ vi word_race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git pull
+error: Your local changes to the following files would be overwritten by merge:
+        word_race.txt
+Please commit your changes or stash them before you merge.
+Aborting
+Updating a913c8f..ffbafd3
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git pull
+error: Your local changes to the following files would be overwritten by merge:
+        word_race.txt
+Please commit your changes or stash them before you merge.
+Aborting
+Updating a913c8f..ffbafd3
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git add .
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git commit -m "word_race.txt"
+[master 349716d] word_race.txt
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git pull origin master
+From https://github.com/mein-FIGUR/word_race
+ * branch            master     -> FETCH_HEAD
+Auto-merging word_race.txt
+CONFLICT (content): Merge conflict in word_race.txt
+Removing word.race.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master|MERGING)
+$ vi word_race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master|MERGING)
+$ git add .
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master|MERGING)
+$ git commit -m "word_race.txt"
+[master 218aef4] word_race.txt
+
+j2woo@JiWoong MINGW64 ~/Desktop/ssafy6/word_race_new (master)
+$ git push
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (6/6), 594 bytes | 54.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/mein-FIGUR/word_race.git
+   ffbafd3..218aef4  master -> master

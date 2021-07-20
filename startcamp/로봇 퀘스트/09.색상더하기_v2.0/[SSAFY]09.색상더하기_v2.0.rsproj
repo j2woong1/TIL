@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CogSimProj>
+  <ProjectInfo ID="617da339-02e5-4b7d-add2-95812b8e8efc" ItemID="12" Type="RobotSimProject" Version="2.6.0" />
+  <ProjectData>
+    <Details Creator="" Company="" Description="" Email="" Website="" />
+    <State CurrentEnvironment="268435456" />
+    <Directories>
+      <Directory DirectoryName="Materials" />
+      <Directory DirectoryName="Meshes" />
+      <Directory DirectoryName="Resources">
+        <Dependency Name="Educator_Discovery.rres" ItemID="7" Type="Resource" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Scripts" />
+      <Directory DirectoryName="Textures">
+        <Dependency Name="색상매트(반전).png" ItemID="1" Type="Texture" Path="" Link="False" />
+        <Dependency Name="색상매트(반전)_1.png" ItemID="8" Type="Texture" Path="" Link="False" />
+        <Dependency Name="Black.png" ItemID="9" Type="Texture" Path="" Link="False" />
+        <Dependency Name="background-grass.jpg" ItemID="10" Type="Texture" Path="" Link="False" />
+        <Dependency Name="색상매트(반전)_3.png" ItemID="11" Type="Texture" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Environments">
+        <Dependency Name="Sandbox (EV3).rsim" ItemID="268435456" Type="Environment" Path="" Link="False" />
+      </Directory>
+      <EV3Directory DirectoryName="Educator_Discovery" />
+      <EV3Directory DirectoryName="SSAFY La Boum Bot" />
+    </Directories>
+  </ProjectData>
+</CogSimProj>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CogSimProj>
+  <ProjectInfo ID="7a578855-af98-436a-8677-72eb59e339c0" ItemID="15" Type="RobotSimProject" Version="2.6.0" />
+  <ProjectData>
+    <Details Creator="" Company="" Description="" Email="" Website="" />
+    <State CurrentEnvironment="268435456" />
+    <Directories>
+      <Directory DirectoryName="Materials" />
+      <Directory DirectoryName="Meshes" />
+      <Directory DirectoryName="Resources">
+        <Dependency Name="Educator_Discovery.rres" ItemID="2" Type="Resource" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Scripts" />
+      <Directory DirectoryName="Textures">
+        <Dependency Name="191231_ssafy_logo_01 (좌우반전).png" ItemID="3" Type="Texture" Path="" Link="False" />
+        <Dependency Name="사본 -개인미션(반전).jpg" ItemID="4" Type="Texture" Path="" Link="False" />
+        <Dependency Name="사본 -개인미션(반전1).jpg" ItemID="5" Type="Texture" Path="" Link="False" />
+        <Dependency Name="사본 -191231_ssafy_logo_01 (좌우반전).jpg" ItemID="6" Type="Texture" Path="" Link="False" />
+        <Dependency Name="개인미션(반전2).jpg" ItemID="7" Type="Texture" Path="" Link="False" />
+        <Dependency Name="개인미션(반전2).png.jpg" ItemID="8" Type="Texture" Path="" Link="False" />
+        <Dependency Name="개인미션3(반전).jpg" ItemID="9" Type="Texture" Path="" Link="False" />
+        <Dependency Name="그림2(대칭).jpg" ItemID="10" Type="Texture" Path="" Link="False" />
+        <Dependency Name="SSAMBA!.jpg" ItemID="11" Type="Texture" Path="" Link="False" />
+        <Dependency Name="그림2.jpg" ItemID="12" Type="Texture" Path="" Link="False" />
+        <Dependency Name="Mission01_개인미션.PNG" ItemID="13" Type="Texture" Path="" Link="False" />
+        <Dependency Name="Mission01_개인미션(반전).PNG" ItemID="14" Type="Texture" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Environments">
+        <Dependency Name="Sandbox (EV3).rsim" ItemID="268435456" Type="Environment" Path="" Link="False" />
+      </Directory>
+      <EV3Directory DirectoryName="SSAFY PM Bot" />
+    </Directories>
+  </ProjectData>
+</CogSimProj>

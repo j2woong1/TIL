@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CogSimProj>
+  <ProjectInfo ID="7a578855-af98-436a-8677-72eb59e339c0" ItemID="4" Type="RobotSimProject" Version="2.6.0" />
+  <ProjectData>
+    <Details Creator="" Company="" Description="" Email="" Website="" />
+    <State CurrentEnvironment="268435456" />
+    <Directories>
+      <Directory DirectoryName="Materials" />
+      <Directory DirectoryName="Meshes" />
+      <Directory DirectoryName="Resources">
+        <Dependency Name="Educator_Discovery.rres" ItemID="2" Type="Resource" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Scripts" />
+      <Directory DirectoryName="Textures">
+        <Dependency Name="191231_ssafy_logo_01 (좌우반전).png" ItemID="3" Type="Texture" Path="" Link="False" />
+      </Directory>
+      <Directory DirectoryName="Environments">
+        <Dependency Name="Sandbox (EV3).rsim" ItemID="268435456" Type="Environment" Path="" Link="False" />
+      </Directory>
+      <EV3Directory DirectoryName="SSAFY Tutorial Bot" />
+    </Directories>
+  </ProjectData>
+</CogSimProj>
