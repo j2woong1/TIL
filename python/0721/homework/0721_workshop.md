@@ -36,3 +36,4 @@ def all_list_sum(n):
 
 print(all_list_sum(n))
 ```
+
