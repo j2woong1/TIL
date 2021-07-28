@@ -1,0 +1,454 @@
+# Data Structure
+
+## 1. 데이터 구조
+
+### 순서 O
+
+- 문자열 (String)
+- List
+
+### 순서 X
+
+- Set
+- Dictionary
+
+## 2. 문자열
+
+- 문자 나열
+
+### 1. 특징
+
+- Immutable (변경 X)
+
+```python
+a = 'my string?'
+a[-1] = ! # TypeError
+```
+
+- Ordered (순서 O)
+
+- Iterable (순회 O)
+
+```python
+a = '123'
+for char in a:
+	print(char) # 1 \n 2 \n 3
+```
+
+### 2. Slicing
+
+- s[start:stop:step]
+
+```python
+s = "abcdefghi"
+
+s[2:5] # 'cde'
+s[-6:-2] # 'defg'
+s[2:-4] # 'cde'
+
+s[2:5:2] # 'ce'
+s[-6:-1:3] # 'dg'
+s[2:5:-1] # '' 
+s[5:2:-1] # 'fed'
+
+s[:3] # 'abc'
+s[5:] # 'fghi'
+
+s[::] # 'abcdefghi' 
+s[0:len(s):1] # same
+
+s[::-1] # 'ihgfedcba'
+s[-1:-(len(s)+1):-1]
+```
+
+### 3. 메소드
+
+- 조회/탐색
+
+```python
+'apple'.find('p') # 1
+'apple'.find('k') # -1
+```
+
+```python
+'apple'.index('p') # 1
+'apple'.index('k') # ValueError
+```
+
+- 변경
+
+```python
+# .replace(old, new[,count])
+
+'coone'.replace('o', 'a') # 'caane'
+'cooone'.replace('o', '!', 2) # 'c!!one'
+```
+
+```python
+# .strip([chars])
+
+'    와우!\n'.strip() # '와우!'
+'    와우!\n'.lstrip() # '와우!\n'
+'    와우!\n'.rstrip() # '     와우!'
+'안녕하세요????'.rstrip('?') # '안녕하세요'
+```
+
+```python
+# .split([chars])
+
+'a,b,c'.split('_') # ['a,b,c']
+'a b c'.split() # ['a', 'b', 'c']
+```
+
+```python
+# 'separator'.join([iterable])
+
+'!'.join('ssafy') # 's!s!a!f!y'
+' '.join(['3', '5']) # '3 5'
+```
+
+```python
+msg = 'hI! Everyone, I\'m ssafy'
+
+msg.capitalize() # 'Hi! everyone, i'm ssafy'
+msg.title() # 'Hi! Everyone, I'M Ssafy'
+msg.upper() # 'HI! EVERYONE, I'M SSAFY'
+msg.lower() # 'hi! everyone, i'm ssafy'
+msg.swapcase() # 'Hi! eVERYONE, i'M SSAFY'
+```
+
+
+
+## 3. 리스트
+
+- 순서 O, 인덱스
+
+### 1. 특징
+
+- Mutable (변경 O)
+- Ordered (순서 O)
+- Iterable (순회 O)
+
+### 2. 메소드
+
+- 추가/삭제
+
+```python
+# append : 값 추가
+
+cafe = ['starbucks', 'tomntoms', 'hollys']
+cafe.append('banapresso') # ['starbucks', 'tomntoms', 'hollys', 'banapresso']
+```
+
+```python
+# extend(iterable) : 리스트에 iterable 추가
+
+cafe = ['starbucks', 'tomntoms', 'hollys']
+
+cafe.expend(['coffee']) # ['starbucks', 'tomntoms', 'hollys', 'coffee']
+cafe += ['coffee'] # same
+
+cafe.expend('coffee') # ['starbucks', 'tomntoms', 'hollys', 'c', 'o', 'f', 'f', 'e', 'e']
+```
+
+```python
+# insert(i,x) : 정해진 위치
+
+cafe = ['starbucks', 'tomntoms', 'hollys']
+cafe.insert(0, 'start') # ['start', 'starbucks', 'tomntoms', 'hollys']
+
+cafe.insert(len(cafe), 'end') # ['starbucks', 'tomntoms', 'hollys', 'end']
+cafe.insert(10000, 'end') # same : 리스트 길이보다 클 때
+```
+
+```python
+# remove(x) : 리스트에서 x 값 삭제
+
+numbers = [1, 2, 3, 'hi']
+numbers.remove('hi') # [1, 2, 3]
+numbers.remove('hi') # ValueError
+```
+
+```python
+# pop(i) : 정해진 위치, 지정 X -> 마지막
+
+numbers = [1, 2, 3, 'hi']
+numbers.pop() # [1, 2, 3]
+
+numbers.pop(0) # [2, 3, 'hi']
+```
+
+```python
+numbers = [1, 2, 3, 'hi']
+numbers.clear() # []
+```
+
+- 탐색/정렬
+
+```python
+numbers = [1, 2, 3, 4]
+numbers.index(3) # 2
+numbers.index(100) # ValueError
+```
+
+```python
+numbers = [1, 2, 3, 1, 1]
+numbers.count(1) # 3
+numbers.count(100) # 0
+```
+
+```python
+numbers = [3, 2, 5, 1]
+result = numbers.sort()
+print(numbers, result) # [1, 2, 3, 5] None
+
+result = sorted(numbers)
+print(numbers, result) # [3, 2, 5, 1] [1, 2, 3, 5]
+```
+
+```
+# reverse : 순서 반대로, 정렬 X
+
+result = numbers.reverse()
+print(numbers, result) # [1, 5, 2, 3] None
+```
+
+- 복사
+
+  - 얕은 복사
+
+  ```python
+  # slice
+  a = [1, 2, 3]
+  b = a[:]
+  print(a, b) # [1, 2, 3] [1, 2, 3]
+  b[0] = 5
+  print(a, b) # [1, 2, 3] [5, 2, 3]
+  ```
+
+  ```python
+  # list
+  a = [1, 2, 3]
+  b = list(a)
+  print(a, b) # [1, 2, 3] [1, 2, 3]
+  b[0] = 5
+  print(a, b) # [1, 2, 3] [5, 2, 3]
+  ```
+
+  ```python
+  # 주의 사항 : 주소 참조
+  a = [1, 2, ['a', 'b']]
+  b = a[:]
+  print(a, b) # [1, 2, ['a', 'b']] [1, 2, ['a', 'b']]
+  b[2][0] = 0
+  print(a, b) # [1, 2, [0, 'b']] [1, 2, [0, 'b']]
+  ```
+
+  - 깊은 복사
+
+  ```python
+  import copy
+  a = [1, 2, ['a', 'b']]
+  b = copy.deepcopy(a)
+  print(a, b) # [1, 2, ['a', 'b']] [1, 2, ['a', 'b']]
+  b[2][0] = 0
+  print(a, b) # [1, 2, ['a', 'b']] [1, 2, [0, 'b']]
+  ```
+
+- Comprehension
+
+```python
+[<expression> for <변수> in <iterable]
+[<expression> for <변수> in <iterable if <조건식>]
+```
+
+```python
+# 1~3의 세제곱 리스트
+cubic_list = []
+for number in range(1, 4):
+	cubic_list.append(number ** 3)
+cubic_list
+
+[number ** 3 for number in range(1,4)]
+```
+
+```python
+# 1~3까지 중 짝수만 리스트
+even_list = []
+for i in range(1, 4):
+	if i % 2 == 0:
+		even_list.append(i)
+print(even_list)
+
+[x for x in range(1, 4) if x % 2 == 0]
+```
+
+```python
+girls = ['jane', 'ashley']
+boys = ['justin', 'eric']
+
+pair = []
+for boy in boys:
+	for girl in girls:
+		pair.append((boy, girl))
+		
+[(boy, girl) for boy in boys for girl in girls]
+
+# [('justin', 'jane'), ('justin', 'ashley'), ('eric', 'jane'), ('eric', 'ashley')]
+```
+
+- Built-in Function
+
+```python
+# map(function, iterable)
+numbers = [1, 2, 3]
+result = map(str, numbers)
+list(result) # ['1', '2', '3']
+
+n, m = map(int, input().split()) # 3 5
+print(type(n), type(m)) # int
+```
+
+```python
+# filter(function, iterable)
+def odd(n):
+    return n % 2
+numbers = [1, 2, 3]
+result = filter(odd, numbers)
+list(result) = [1, 3]
+```
+
+```python
+# zip
+girls = ['jane', 'ashley']
+boys = ['justin', 'eric']
+pair = zip(girls, boys)
+list(pair) # [('jane', 'justin'), ('ashley', 'eric')]
+```
+
+
+
+## 4. 세트
+
+- 중복, 순서 X
+
+### 1. 특징
+
+- Mutable
+- Unordered
+- Iterable
+
+### 2. 메소드
+
+```python
+# add
+a = {'사과', '바나나', '수박'}
+a.add('딸기')
+print(a) # {'바나나', '사과', '딸기', '수박'}
+```
+
+```python
+# update
+a = {'사과', '바나나', '수박'}
+a.update(['딸기', '바나나', '참외'])
+print(a) # {'바나나', '사과', '참외', '수박', '딸기'}
+```
+
+```python
+# remove
+a = {'사과', '바나나', '수박'}
+a.remove('사과') # {'바나나', '수박'}
+a.remove('애플') # KeyError
+```
+
+```python
+# discard
+a = {'사과', '바나나', '수박'}
+a.remove('사과') # {'바나나', '수박'}
+a.remove('애플') # {'바나나', '수박'}
+```
+
+```python
+# pop : 임의
+a = {'사과', '바나나', '수박'}
+a.pop # 아무거나 제거
+```
+
+
+
+## 5. 딕셔너리
+
+- key, value
+
+### 1. 특징
+
+- Mutable
+- Unordered
+- Iterable
+
+### 2. 메소드
+
+- 조회
+
+```python
+# get(key[,default])
+my_dict = {'apple': '사과', 'banana': '바나나'}
+my_dict.get('pineapple') # None
+my_dict.get('apple') # 사과
+my_dict.get('pineapple', 0) # 0 : default 값 설정
+```
+
+```python
+# pop : 있으면 제거, 없으면 default, default 없으면 keyerror
+my_dict = {'apple': '사과', 'banana': '바나나'}
+data = my_dict.pop('apple')
+print(data, my_dict) # 사과 {'banana': '바나나'}
+
+data = my_dict.pop('pineapple')
+print(data, my_dict) # KeyError
+
+data = my_dict.pop('pineapple', 0)
+print(data, my_dict) 0 {'apple': '사과', 'banana': '바나나'}
+```
+
+```python
+# update
+my_dict = {'apple': '사', 'banana': '바나나'}
+my_dict.update(apple = '사과')
+print(my_dict) # {'apple': '사과', 'banana': '바나나'}
+```
+
+- 순회
+
+```python
+grades = {'john': 80, 'eric': 90}
+for students in grades:
+	print(student) # john \n eric
+	
+	print(student, grades[student]) # john 80 \n eric 90
+```
+
+```python
+for name, score in grades.items():
+	print(name, score) # john 80 \n eric 90
+```
+
+- Comprehension
+
+```python
+{key: value for <변수> in <iterable>}
+{key: value for <변수> in <iterable> if <조건식>}
+```
+
+```python
+dusts = {'서울': 72, '대전': 82, '구미': 29, '광주': 45}
+
+result = {}
+for key, value in dusts.items():
+	if value > 70:
+		result[key] = value
+print(result) # {'서울': 72, '대전': 82}
+
+{key: value for key, value in dusts.items() if value > 70} # same
+```
+

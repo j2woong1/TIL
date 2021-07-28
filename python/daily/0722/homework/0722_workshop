@@ -1,0 +1,58 @@
+# Function
+
+## ASCII 코드
+
+![image-20210728090435579](0722_workshop.assets/image-20210728090435579.png)
+
+## 1. 숫자의 의미
+
+- 아스키 문자를 이어붙인 문자열
+
+```python
+def get_secret_word(numbers):
+    word = ''
+    
+    for number in numbers:
+        word += chr(number)
+        
+    return word
+
+print(get_secret_word([83, 115, 65, 102, 89])) # 'SsAfY'
+```
+
+## 2. 이름
+
+```python
+def get_secret_number(word):
+    total = 0
+
+    for char in word:
+        total += ord(char)
+		
+		return total
+
+print(get_secret_number('tom')) # 336
+```
+
+## 3. 강한 이름
+
+```python
+def get_strong_word(word1, word2):
+    word1_total = 0
+    word2_total = 0
+
+    for char in word1:
+        word1_total += ord(char)
+
+    for char in word2:
+        word2_total += ord(char)
+
+    if word1_total > word2_total:
+        return word1
+    else:
+        return word2
+
+print(get_strong_word('z', 'a')) # 'z'
+print(get_strong_word('tom', 'john')) # john
+```
+
