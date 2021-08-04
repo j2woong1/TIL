@@ -161,6 +161,47 @@ h1 { /* 선택자 */
 ## 선택자 (Selector)
 
 - 범위가 좁은게 우선 순위 높음 : 모든 태그 -> 태그 -> 클래스 -> ID (같은 강도면 아래가 높음)
+- 요소 : 직접 선택
+- 클래스 : 마침표
+- id : #
+
+```css
+<style>
+    * { /* 전체 선택자 */
+        color: red;
+    }
+    
+    h2 { /* 요소 선택자 */
+        color: orange;
+    }
+    
+    h3, h4 {
+        font-size: 10px;
+    }
+    
+    .green { /* 클래스 선택자 */
+        color: green;
+    }
+    
+    #purple { /* id 선택자 */
+        color: purple
+    }
+    
+    .box > p { /* 자식 결합자 */
+        font-size: 30px;
+    }
+    
+    .box p { /* 자손 결합자 */
+        color: blue;
+    }
+</style>
+```
+
+### 우선순위
+
+- 중요도 : !important
+- 우선순위 : inline > id 선택자 > class 선택자 > 요소 선택자
+- 소스 순서
 
 ### 기본
 
@@ -169,8 +210,31 @@ h1 { /* 선택자 */
 
 ### 결합자 (Combiantors)
 
-- 자손, 자식
-- 일반 형제, 인접 형제
+- 자손 : 하위 모든 요소
+- 자식 : 바로 아래 요소
+
+```css
+div span { /* 자손 결합자 */
+	color: red;
+}
+
+div > span { /* 자식 결합자 */
+    color: red;
+}
+```
+
+- 일반 형제 : 형제 요소 중 뒤 모든 요소
+- 인접 형제 : 형제 요소 중 바로 뒤 요소
+
+```css
+p ~ span { /* 일반 형제 결합자 */
+    color: red;
+}
+
+p + span { /* 인접 형제 결합자 */
+    color: red;
+}
+```
 
 ### 의사 클래스/요소 (pseudo class)
 
@@ -185,14 +249,74 @@ h1 { /* 선택자 */
 
 ### 크기
 
+- px
+- % : 가변적인 레이아웃
+- em : 상속 영향, 배수 단위, 요소에 지정된 사이즈에 상대적인 사이즈
+- rem : 상속 영향 X, 최상위 요소(html) 사이즈 기준 배수 단위
+- viewport : 상대적인 사이즈 -> vw, vh, vmin, vmax
+
 ### 색상
+
+- 색상 키워드
+- RGB : 16진수 (# + 16진수) or 함수형 (rgb 함수형)
+- HSL : 색상, 채도, 명도
+- *a : alpha (투명도) 추가
 
 ## CSS Box Model
 
+![image-20210804110722589](web1.assets/image-20210804110722589.png)
+
+- box-sizing : content-box
+  - padding 제외 순수한 contents 영역
+- border-box로 설정
+
+![image-20210804144701401](web1.assets/image-20210804144701401.png)
+
+- 마진 상쇄 : block A top, block B bottom margin이 큰 margin value로 결합(겹침)
+
 ## CSS Display
 
+### Display : Block
+
+- 줄 바꿈
+- 화면 크기 전체 가로 폭
+- Block 안 Inline 가능
+
+### Display : Inline
+
+- 줄 바꿈 X
+- Content 너비만큼 가로 폭
+- width, height, margin-top, margin-bottom 지정 X
+- 상하 여백 : line-height
+
+### Display : Inline-Block
+
+- block, inline 모두
+- inline처럼 한 줄에 표시 가능
+- block처럼 width, height, margin 모두 지정 O
+
+### Display : None
+
+- 화면에 표시 X, 공간 X
+- hidden : 공간 O, 표시 O
+
 ## CSS Position
+
+- static : 기본 값 (기준 위치)
+- relative
+  - 자기 자신 static 위치 기준
+  - 차지 공간 : static과 same
+- absolute
+  - 공간 차지 X
+  - 가장 가까이 있는 부모 요소 기준 이동
+  - 과거 위치 공간 : 존재 X -> 독자적
+  - 격리된 UI 기능 제작
+- fixed
+  - 공간 차지 X
+  - Viewport 기준 이동
+  - 스크롤 시에도 항상 같은 곳에 위치
 
 https://emmet.io/
 
 https://docs.emmet.io/cheat-sheet/
+
