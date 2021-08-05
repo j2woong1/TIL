@@ -10,7 +10,10 @@
     </div>
 ```
 
-
+- block button : d-grid gap-2
+- half-width : col-6
+- center horizontally : mx-auto
+- green button : btn-success
 
 ## 2. Component
 
