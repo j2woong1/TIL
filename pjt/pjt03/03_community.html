@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="01_nav_footer.css">
+  <link rel="stylesheet" href="03_community.css">
+
+  <title>Community</title>
+</head>
+<body>
+
+  <!-- 01_nav_footer.html -->
+  <!-- 01_nav_footer 에서 완성한 Navigation bar 코드를 붙여넣어 주세요. -->
+  <nav class="navbar navbar-expand-md sticky-top bg-dark navbar-light bg-light">
+    <div class="d-flex justify-content-between align-items-center container-fluid">
+
+      <a class="navbar-brand" href="02_home.html">
+        <img src="images\logo.png" alt="logo" style="width: 100px;">
+      </a>  
+
+      <button class="navbar-toggler btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse justify-content-end collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active mx-2 text-white fw-bold" aria-current="page" href="02_home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-secondary fw-bold" href="03_community.html">Community</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-secondary fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+          </li>
+        </ul>
+      </div> 
+
+    </div>
+  </nav>
+
+  <!-- 03_community.html -->
+  <div class="container main">
+    <h1 class="text-center active fw-bold display-1 my-5">Community</h1>
+    <div class="row">
+      <!-- Sidebar -->
+      <aside class="col-12 col-lg-2">
+        <ul class="list-group">
+
+          <li class="list-group-item text-primary">
+            <a href="#" class="text-decoration-none">Boxoffice</a>
+          </li>
+
+          <li class="list-group-item text-primary">
+            <a href="#" class="text-decoration-none">Movies</a>
+          </li>
+
+          <li class="list-group-item text-primary">
+            <a href="#" class="text-decoration-none">Genres</a>
+          </li>
+
+          <li class="list-group-item text-primary">
+            <a href="#" class="text-decoration-none">Actors</a>
+          </li>
+
+        </ul>
+      </aside>
+
+      <!-- Board -->
+      <section class="col-12 col-lg-10">
+        <div class="d-none d-lg-table w-100">
+          <table class="table table-striped table-hover col-none col-lg-10">
+
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">글 제목</th>
+                <th scope="col">영화 제목</th>
+                <th scope="col">사용자 id</th>
+                <th scope="col">작성시간</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="row">Movie Title</th>
+                <td>Movie Test</td>
+                <td>user</td>
+                <td>1 minutes ago</td>
+              </tr>
+
+              <tr>
+                <th scope="row">Movie Title</th>
+                <td>Movie Test</td>
+                <td>user</td>
+                <td>1 minutes ago</td>
+              </tr>
+
+              <tr>
+                <th scope="row">Movie Title</th>
+                <td>Movie Test</td>
+                <td>user</td>
+                <td>1 minutes ago</td>
+              </tr>
+
+              <tr>
+                <th scope="row">Movie Title</th>
+                <td>Movie Test</td>
+                <td>user</td>
+                <td>1 minutes ago</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+
+        <div class="d-lg-none my-5">
+          <article>
+
+            <div class="p-3 border-top border-secondary">
+              <div class="d-flex flex-row justify-content-between">
+                <h4 class="fw-bold">Movie Test</h4>
+                <h5>user</h5>
+              </div>
+              <h5>Movie Title</h5>
+              <h5>1 minutes ago</h5>
+            </div>
+
+            <div class="p-3 border-top border-secondary">
+              <div class="d-flex flex-row justify-content-between">
+                <h4 class="fw-bold">Movie Test</h4>
+                <h5>user</h5>
+              </div>
+              <h5>Movie Title</h5>
+              <h5>1 minutes ago</h5>
+            </div>
+
+            <div class="p-3 border-top border-secondary">
+              <div class="d-flex flex-row justify-content-between">
+                <h4 class="fw-bold">Movie Test</h4>
+                <h5>user</h5>
+              </div>
+              <h5>Movie Title</h5>
+              <h5>1 minutes ago</h5>
+            </div>
+
+            <div class="p-3 border-top border-secondary">
+              <div class="d-flex flex-row justify-content-between">
+                <h4 class="fw-bold">Movie Test</h4>
+                <h5>user</h5>
+              </div>
+              <h5>Movie Title</h5>
+              <h5>1 minutes ago</h5>
+            </div>
+
+          </article>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination d-flex justify-content-center my-5">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+
+  <!-- 01_nav_footer.html -->
+  <!-- 01_nav_footer 에서 완성한 Footer 코드를 붙여넣어 주세요. -->
+  <footer class="d-flex fixed-bottom justify-content-center align-items-center bg-dark">
+    <p class="text-white mb-0">HTML & CSS project. Created by JJW</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>  
+</body>
+</html>
