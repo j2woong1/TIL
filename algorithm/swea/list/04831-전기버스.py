@@ -4,18 +4,31 @@
 충전기 설치가 잘못되어 종점에 도착할 수 없는 경우는 0을 출력
 """
 
-t = int(input())
-
-for tc in range(1, t + 1):
+T = int(input())
+for t in range(1, T + 1):
     k, n, m = map(int, input().split())
-    charge = [0] + list(map(int, input().split())) + [n]
-    last = 0
-    ans = 0
-    for i in range(1, m + 2):
-        if charge[i] - charge[i - 1] > k:  # 운행 불가 간격인지 확인
-            ans = 0
+    stations = list(map(int, input().split()))
+    result = 0
+    start = 0
+    impossible = False
+    while True:
+        end = start + k
+        # 끝에 도달하거나 불가능이면 탈출
+        if end >= n or impossible:
             break
-        if charge[i] > last + k:
-            last = charge[i - 1]
-            ans += 1
-    print(f'{tc} {ans}')
+        # 뒤부터 탐색하여 K범위 내 가장 먼 충전기와 만나면 진행, 못만나면 불가능
+        for i in range(end, start - 1, -1):
+            # 간 곳이 start와 같으면 충전기가 없는 것이다. 불가능으로 판별
+            if i == start:
+                impossible = True
+                break
+            # 간 곳이 충전기이면 진행
+            if i in stations:
+                start = i
+                result += 1
+                break
+
+    if impossible:
+        print(f'#{t} 0')
+    else:
+        print(f'#{t} {result}')

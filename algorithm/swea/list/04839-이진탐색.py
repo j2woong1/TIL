@@ -7,36 +7,22 @@
 """
 
 t = int(input())
-for tc in range(1, t + 1):
-    P, A, B = map(int, input().split())
-    cnt_a = 0
-    cnt_b = 0
-    l = 1
-    r = P
-    while 1:
-        c = int((l + r) / 2)
-        cnt_a += 1
-        if c == A:
-            break
-        elif c <= A:
-            l = c
-        else:
-            r = c
-    l = 1
-    r = P
-    while 1:
-        c = int((l + r) / 2)
-        cnt_b += 1
-        if c == B:
-            break
-        elif c <= B:
-            l = c
-        else:
-            r = c
 
-    if cnt_a == cnt_b:
-        print("#%d %d" % (tc, 0))
-    elif cnt_a > cnt_b:
-        print("#%d %c" % (tc, 'B'))
-    else:
-        print("#%d %c" % (tc, 'A'))
+for tc in range(1, t + 1):
+    arr = [i for i in range(1, 13)]  # 1 ~ 12
+    length = len(arr)
+    n, k = map(int, input().split())  # num / sum
+
+    cnt = 0
+    for i in range(1 << length):
+        sub = []
+        for j in range(length):
+            if i & (1 << j):
+                sub.append(arr[j])
+
+        if len(sub) == n:
+            if sum(sub) == k:
+                cnt += 1
+                # print()
+
+    print(f"#{tc} {cnt}")
