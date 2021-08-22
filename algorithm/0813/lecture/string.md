@@ -1,61 +1,61 @@
-# String
+## String
 
-- fixed length
+### fixed length
 
-- variable length
+### variable length
 
-  - length controlled : `java`
+- length controlled : `java`
 
-    - ![image-20210818104904347](string.assets/image-20210818104904347.png)
-    - hash, count (문자열 길이), offset (문자열 시작점), value (참조)
-    - `String` 클래스
+  - ![image-20210818104904347](string.assets/image-20210818104904347.png)
+  - hash, count (문자열 길이), offset (문자열 시작점), value (참조)
+  - `String` 클래스
 
-    ```java
-    String str="abc"
-    String str = new String("abc")
-    ```
+  ```java
+  String str="abc"
+  String str = new String("abc")
+  ```
 
-    - 연산 : 연산자, 메소드 - `+`, `length()`, `split()`, `substring()`
-    - `UTF16`, 2 byte
+  - 연산 : 연산자, 메소드 - `+`, `length()`, `split()`, `substring()`
+  - `UTF16`, 2 byte
 
-    ```java
-    String name = "홍길동";
-    System.out.println(name.length()); // 3
-    ```
+  ```java
+  String name = "홍길동";
+  System.out.println(name.length()); // 3
+  ```
 
-  - delimited : `c`
+- delimited : `c`
 
-    - 항상 끝에 \ 문자
+  - 항상 끝에 \ 문자
 
-    ```c
-    char ary[]={'a', 'b', 'c', '\0'};
-    char ary[]="abc";
-    ```
+  ```c
+  char ary[]={'a', 'b', 'c', '\0'};
+  char ary[]="abc";
+  ```
 
-    - 연산 : 함수 형태 - `strlen()`, `strcpy()`, `strcmp()`
-    - ASCII 코드
+  - 연산 : 함수 형태 - `strlen()`, `strcpy()`, `strcmp()`
+  - ASCII 코드
 
-    ```c
-    char * name = "홍길동";
-    int count = strlen(name);
-    printf("%d", count); // 6
-    ```
+  ```c
+  char * name = "홍길동";
+  int count = strlen(name);
+  printf("%d", count); // 6
+  ```
 
-  - `python`
+- `python`
 
-    - char X
-    - 문자열 기호 - `''`, `""`, `'''`, `"""`
-    - 연결 : `+`
-    - 반복 : `*`
-    - 시퀀스 자료형 : indexing, slicing
-    - 메소드 : `replace()`, `split()`, `isalpha()`, `find()`
-    - immutable
-    - `UTF8`
+  - char X
+  - 문자열 기호 - `''`, `""`, `'''`, `"""`
+  - 연결 : `+`
+  - 반복 : `*`
+  - 시퀀스 자료형 : indexing, slicing
+  - 메소드 : `replace()`, `split()`, `isalpha()`, `find()`
+  - immutable
+  - `UTF8`
 
-    ```python
-    name = "홍길동"
-    print(len(name)) # 3
-    ```
+  ```python
+  name = "홍길동"
+  print(len(name)) # 3
+  ```
 
 ### 뒤집기
 
