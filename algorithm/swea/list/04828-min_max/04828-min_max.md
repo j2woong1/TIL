@@ -31,9 +31,11 @@
 >
 > 각 줄마다 "#T" (T는 테스트 케이스 번호)를 출력한 뒤, 답을 출력한다.
 >
-> #1 
+> #1 630739 
 >
-> 630739 #2 740510 #3 838110
+> #2 740510 
+>
+> #3 838110
 
 - 풀이
 
@@ -62,7 +64,7 @@ for t in range(1, t + 1):
     print(f'#{t} {ans}')
 ```
 
-- 다른 풀이
+- 다른 풀이 1
 
 ```python
 T = int(input())
@@ -78,5 +80,27 @@ for tc in range(T):
             min_a = a_i[i]
     a_dif = max_a - min_a
     print(f'#{tc+1} {a_dif}')
+```
+
+- 다른 풀이 2
+
+```python
+T = int(input())
+ 
+for i in range(T):
+    N = int(input())
+    numbers = list(map(int, input().split()))
+    max_num = 0
+    min_num = 1000001
+ 
+    for j in range(N):
+        if numbers[j] < min_num:
+            min_num = numbers[j]
+ 
+    for k in range(N):
+        if numbers[k] > max_num:
+            max_num = numbers[k]
+     
+    print(f'#{i+1} {max_num-min_num}')
 ```
 

@@ -1,6 +1,6 @@
 # 10548. Gravity
 
-> 상자들이 쌓여있는 방이 있다. 방이 오른쪽으로 90도 회전하여 상자들이 중력의 영향을 받아 낙하한다고 할 때, 낙차가 가장 큰 상자를 구하여 그 낙차를 리턴 하는 프로그램을 작성하시오.
+> 상자들이 쌓여있는 방이 있다. 방이 오른쪽으로 90도 회전하여 상자들이 중력의 영향을 받아 낙하한다고 할 때, **낙차가 가장 큰 상자를 구하여 그 낙차를 리턴** 하는 프로그램을 작성하시오.
 >
 > - 중력은 회전이 완료된 후 적용된다.
 > - 상자들은 모두 한쪽 벽면에 붙여진 상태로 쌓여 2차원의 형태를 이루며 벽에서 떨어져서 쌓인 상자는 없다.
@@ -57,22 +57,18 @@ for t in range(1, T + 1):
 - 다른 풀이
 
 ```python
-T=int(input())
-for i in range(T):
-        res=0
-        tmp=[]
-        N=int(input())
-        numbers=list(map(int,input().split()))
-        for j in range(len(numbers)):
-            final=N-j-1
-            for k in range(j+1,len(numbers)):
-                if numbers[k]>=numbers[j]:
-                    final-=1
-            tmp.append(final)
-        res=tmp[0]
-        for j in tmp:
-            if j>res:
-                res=j
-        print(f"#{i+1} {res}")
+T = int(input())
+for t in range(1,T+1):
+    N=int(input())
+    A=list(map(int,input().split()))
+    maxv=0
+    for i in range(N):
+        count=0
+        for j in range(i+1,N):
+            if A[i]>A[j]:
+                count+=1
+        if maxv<count:
+            maxv=count
+    print(f'#{t} {maxv}')
 ```
 

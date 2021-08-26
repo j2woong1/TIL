@@ -8,7 +8,7 @@
 >
 > 평탄화를 모두 수행하고 나면, 가장 높은 곳과 가장 낮은 곳의 차이가 최대 1 이내가 된다.
 >
-> 평탄화 작업을 위해서 상자를 옮기는 작업 횟수에 제한이 걸려있을 때, 제한된 횟수만큼 옮기는 작업을 한 후 최고점과 최저점의 차이를 반환하는 프로그램을 작성하시오.
+> 평탄화 작업을 위해서 **상자를 옮기는 작업 횟수에 제한**이 걸려있을 때, 제한된 횟수만큼 옮기는 작업을 한 후 **최고점과 최저점의 차이를 반환**하는 프로그램을 작성하시오.
 >
 > ![image-20210822201811317](01208-Flatten.assets/image-20210822201811317.png)
 >
@@ -81,5 +81,44 @@ def get_ans(dumps, flat):
     # 최종적으로 평탄화 된 것에서 최소, 최대값 구하기
     max_height, min_height = get_min_max(flat)
     return max_height - min_height
+
+t = 10
+for tc in range(1, t + 1):
+    dump_num = int(input())
+    height = list(map(int, input().split()))
+    ans = get_ans(dump_num, height)
+    print(f'#{tc} {ans}')
+```
+
+- 해설 
+
+```python
+def find(lst):
+    max_num = 0
+    max_idx = 0
+    min_num = 10000
+    min_idx = 0
+    for i in range(len(lst)):
+        if lst[i] >= max_num:
+            max_num = lst[i]
+            max_idx = i
+        if lst[i] <= min_num:
+            min_num = lst[i]
+            min_idx = i
+    return max_num, max_idx, min_num, min_idx
+
+
+for tc in range(1, 11):
+    limit = int(input())
+    box = list(map(int, input().split()))
+    # print(find(box))
+
+    for _ in range(limit):
+        max_box, max_idx, min_box, min_idx = find(box)
+        box[max_idx] -= 1
+        box[min_idx] += 1
+    result = find(box)
+    ans = result[0] - result[2]
+    print("#{} {}".format(tc, ans))
 ```
 
