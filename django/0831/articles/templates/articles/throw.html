@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="/catch/" method="GET">
+    <label>던질꺼:
+        <input type="text" name="message">
+    </label>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+{% endblock content %}

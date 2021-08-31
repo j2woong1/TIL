@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>오늘 저녁은 {{ pick }}야!</h1>
+        <p>{{ no|default:'nothing' }}</p>
+        <ul>
+            {% for food in foods  %}
+                <li>{{ food|upper }}</li>
+            {% endfor %}
+        </ul>
+    <p>{{ foods|join:", "}}</p>
+
+    <a href="{% url 'index' %}">index로 이동</a>
+{% endblock content %}
+
