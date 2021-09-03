@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row justify-content-between">
+    <h1 class="col-12 col-sm-6">영화 상세 정보</h1>
+    <div class="col-3 d-flex justify-content-end align-items-center">
+      <form action="{% url 'movies:edit' movie.pk %}" method="GET" class="d-inline mx-1">
+        <input type="submit" class="btn btn-success" value="수정">
+      </form>
+      <input type="button" class="btn btn-danger mx-1" value="삭제" data-bs-toggle="modal" data-bs-target="#deleteModal">
+    </div>
+  </div> <hr>
+  <div class="row">
+    <div class="col-5">
+      <img src="{{ movie.poster_path }}" alt="영화 {{ movie.title }}의 포스터" class='w-100'>
+    </div>
+    <div class="col-7">
+      <h3>영화 제목: {{ movie.title }}</h3>
+      <p>영화 줄거리: {{ movie.overview }}</p>
+    </div>
+  </div>
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">삭제 확인</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          정말 삭제하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <form action="{% url 'movies:delete' movie.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="삭제" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

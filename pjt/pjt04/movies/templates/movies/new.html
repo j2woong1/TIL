@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>영화 정보 작성</h1> <hr>
+  <form action="{% url 'movies:create' %}" method="POST">
+    {% csrf_token %}
+    <label for="title" class="fw-bold fs-5">영화 제목</label> <br> <br>
+    <input type="text" id="title" name="title" placeholder="영화 제목을 입력하세요." class="w-100" required> <hr>
+    <label for="overview" class="fw-bold fs-5">영화 줄거리</label> <br> <br>
+    <textarea name="overview" id="overview" rows="10" placeholder="영화 줄거리를 입력하세요." class="w-100" required></textarea> <hr>
+    <label for="poster_path" class="fw-bold fs-5">포스터 경로</label> <br> <br>
+    <input type="text" id="poster_path" name="poster_path" placeholder="포스터 경로를 입력하세요." class="w-100" required> <hr>
+    <input type="submit" value="제출" class="btn btn-primary">
+  </form>
+
+{% endblock content %}
