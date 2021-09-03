@@ -1,42 +1,75 @@
 # Start Django
 
-- 프로젝트 생성
+- 가상환경, 필요 라이브러리 설치
 
-```
-$ django-admin startproject 프로젝트이름
-```
+  ```
+  $ python -m venv venv
+  $ source venv/Scripts/activate
+  $ pip install django
+  $ pip install django-extensions
+  $ pip install django-seed
+  $ pip install ipython
+  $ pip freeze > requirements.txt
+  ```
 
-- 앱 생성
+- django 프로젝트 시작하기
 
-```
-$ python manage.py startapp 앱이름
-```
+  ```
+  $ django-admin startproject crud
+  $ cd crud
+  $ python manage.py startapp articles
+  $ python manage.py shell_plus
+  ```
+
+- `settings.py`
+
+  ```
+  INSTALLED_APPS = [
+      # Local apps
+      'articles',
+  
+      # Third Party apps
+      'django_extensions',
+      'django_seed',
+  
+      # Django Apps
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+  ]
+  
+  TEMPLATES = [
+      {
+          ...,
+          'DIRS': [BASE_DIR / 'templates'],
+          ...,
+      },
+  ]
+  
+  LANGUAGE_CODE = 'ko-kr'
+  
+  TIME_ZONE = 'Asia/Seoul'
+  ```
 
 - `models.py`
 
   ```python
   # articles/models.py
   class Article(models.Model):
-      title = models.CharField(max_length=10) # 필드 -> 클래스 속성, 속성 -> 열
-      content = models.TextField() # 필드 -> 클래스 속성, 속성 -> 열
+      title = models.CharField(max_length=10) 
+      content = models.TextField() 
   ```
 
-  - 어떤 타입으로 정의
-  - `CharField(max_length=None, **options)`
-    - 길이 제한 문자열
-    - `max_length` : 필수 인자
-    - 필드 최대 길이, DB 레벨, 유효성 검사
-  - `TextField(**options)`
-    - 글자 수 많을 때
-    - `max_length` : `textarea` 위젯  반영, 모델, DB 수준 적용 X
-
-- `makemigrations`
+- `makemigrations` 
 
   ```
   $ python manage.py makemigrations
   ```
 
-- `migrate`
+- `migrate` : DB 적용
 
   ```
   $ python manage.py migrate
@@ -48,25 +81,57 @@ $ python manage.py startapp 앱이름
   $ python manage.py sqlmigrate 앱이름 0001
   ```
 
-  ```sql
-  BEGIN;
-  --
-  -- Create model Article
-  --
-  CREATE TABLE "articles_article"
-  ("id" integer NOT NULL PRIMARY KEY AUTOINCERMENT,
-  "title" varchar(10) NOT NULL, "content" text NOT NULL);
-  COMMIT;
-  ```
-
 - `showmigrations`
 
   ```
   $ python manage.py showmigrations
   ```
 
+- model 수정
+
+  ```python
+  # articles/models.py
+  class Article(models.Model):
+      title = models.CharField(max_length=10) 
+      content = models.TextField()
+      created_at = models.DateTimeField(auto_now_add=True)
+      updated_at = models.DateTimeField(auto_now=True)
   ```
+
+  ```
+  You are trying to add the field 'created' with 'auto_now_add=True' to article without a default; the database needs something to populate existing rows.
+   1) Provide a one-off default now (will be set on all existing rows)
+   2) Quit, and let me add a default in models.py
+  ```
+
+  - `created_at` default 설정 : 1
+
+  ```
+  Please enter the default value now, as valid Python
+  The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+  Type 'exit' to exit this prompt
+  ```
+
+  - `timezone.now` 함수 자동 설정 : 빈 값으로 enter ->  `migrate`
+
+- admin 생성
+
+  ```
+  $ python manage.py createsuperuser
+  ```
+
+- admin 등록
+
+  ```python
+  # articles/admin.py
   
+  from django.contrib import admin
+  from .models import Articles
+  
+  class ArticleAdmin(admin.ModelAdmin):
+      list_display = ('pk', 'title', 'content', 'created_at', 'updated_at,')
+  
+  admin.site.register(Article)
   ```
 
   
