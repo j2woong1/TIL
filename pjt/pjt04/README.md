@@ -4,9 +4,9 @@
 
 - 사용 라이브러리
 
-  - [Django]: https://www.djangoproject.com/	"Django"
+  - [Django]: https://www.djangoproject.com/
 
-  - [Bootstrap]: https://getbootstrap.com/	"Bootstrap"
+  - [Bootstrap]: https://getbootstrap.com/
 
 - Result
 
