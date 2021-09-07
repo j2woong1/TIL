@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h2>Articles</h2>
+    <a href="{% url 'articles:create' %}">NEW</a>
+    <hr>
+    {% for article in articles %}
+        <h2>{{ article.pk }}</h2>
+        <h2>{{ article.title }}</h2>
+        <a href="{% url 'articles:detail' article.pk %}">DETAIL</a>
+        <hr>
+    {% endfor %}
+{% endblock content %}
