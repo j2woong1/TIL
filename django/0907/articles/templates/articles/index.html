@@ -6,8 +6,10 @@
 <hr>
 
 {% for article in articles %}
-    <h3>{{ article.pk }}번글 : {{ article.title}}</h3>
-    <a href="{% url 'article:detail' article.pk %}}">DETAIL</a>
+    <h3>{{ article.pk }}번글 : {{ article.title }} </h3>
+    <a href="{% url 'articles:detail' article.pk %}">DETAIL</a>
     <hr>
 {% endfor %}
+
+
 {% endblock content %}

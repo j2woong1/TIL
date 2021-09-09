@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Detail</h1>
+    <hr>
+    <h3>글 번호: {{ article.pk }}</h3>
+    <h3>글 제목: {{ article.title }}</h3>
+    <p>글 내용: {{ article.content }} </p>
+    {% if article.image %}
+    <img src="{{ article.image.url }}" alt="{{ article.image }}">
+    <br>
+    {{ article.image.url }}
+    <hr>
+    <img src="{{ article.image_thumbnail.url }}" alt="{{ article.image_thumbnail }}">
+    <br>
+    {{ article.image_thumbnail.url }}
+    <hr>
+
+    {% endif %}
+    <hr>
+    <p>글 생성시각: {{ article.created_at|date:"SHORT_DATE_FORMAT" }}</p>
+    <p>글 수정시각: {{ article.updated_at|date:"Y년 M j일" }}</p>
+    <hr>
+    <a href="{% url 'articles:index' %}">[메인 페이지로]</a>
+    <a href="{% url 'articles:update' article.pk %}">[수정]</a>
+    <a href="{% url 'articles:delete' article.pk %}">[게시글 삭제]</a>
+{% endblock content %}
