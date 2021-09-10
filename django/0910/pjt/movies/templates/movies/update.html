@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{% url 'movies:update' movie.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>제출</button>
+    </form> 
+{% endblock content %}
