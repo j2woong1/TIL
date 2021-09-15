@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-center">User List</h1>
+   
+  {% for user in user_list %}
+    {{ user }}
+    <hr>
+  {% endfor %} 
+
+  <a href="{% url 'articles:index' %}">[back]</a>
+{% endblock %}
