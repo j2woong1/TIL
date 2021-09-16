@@ -798,7 +798,17 @@ INSERT INTO articles VALUES ('1번제목', '1번 내용');
     
     # 1
     User.objects.values('country').annotate(Count('country'))
-    # 
+    # <QuerySet [{'country': '강원도', 'country__count': 14}, {'country': '경기도', 'country__count': 9},]
+    
+    # 2
+    User.objects.values('country').annotate(num_countries=Count('country'))
+    
+    # 3
+    User.objects.values('country').annotate(Count('country'), avg_balance=Avg('balance'))
+    ```
+
+    ```sqlite
+    SELECT country, COUNT(country) FROM users_user GROUP BY country;
     ```
 
     
