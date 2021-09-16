@@ -512,6 +512,16 @@ INSERT INTO articles VALUES ('1번제목', '1번 내용');
   SELECT * FROM users_user;
   ```
 
+- id가 102인 유저 정보 조회
+
+  ```python
+  User.objects.get(pk=102)
+  ```
+
+  ```sqlite
+  SELECT * FROM users_user WHERE id=102;
+  ```
+
 #### CREATE
 
 - 새로운 유저 정보
@@ -537,4 +547,259 @@ INSERT INTO articles VALUES ('1번제목', '1번 내용');
   SELECT * FROM users_user LIMIT 2 OFFSET 100;
   ```
 
+  ```sqlite
+  -- 실패 예시 1 : Values에 id X--
+  INSERT INTO users_user VALUES ('길동', '홍', 100, '제주도', '010-1234-4567', 100000);
+  Error: table users_user has 7 columns but 6 values were supplied
   
+  -- 실패 예시 2 : 이미 존재하는 id--
+  INSERT INTO users_user VALUES (102, '길동', '홍', 100, '제주도', '010-1234-5678', 10000);
+  Error: UNIQUE constraint failed: users_user.id
+  
+  -- 실패 예시 3 : NOT NULL 작성 X --
+  INSERT INTO users_user (id, first_name, last_name, age, country, phone)
+  VALUES (103, '길동', '홍', 100, '제주도', '010-1234-5678');
+  Error: NOT NULL constraint.failed: users_user.balance
+  ```
+
+#### UPDATE
+
+- id가 102인 유저 정보 수정
+
+  ```python
+  user = User.objects.get(pk=102)
+  user.last_name = '김'
+  user.save()
+  ```
+
+  ```sqlite
+  UPDATE users_user SET first_name='철수' WHERE id=102;
+  SELECT * FROM users_user WHERE id=102;
+  ```
+
+#### DELETE
+
+- id가 102인 유저 정보 삭제
+
+  ```python
+  User.objects.get(pk=102).delete
+  ```
+
+  ```sqlite
+  DELETE FROM users_user WHERE id=102;
+  SELECT * FROM users_user WHERE id=102;
+  ```
+
+### 활용
+
+- 전체 유저 수 조회
+
+  ```python
+  User.objects.count()
+  ```
+
+  ```sqlite
+  SELECT COUNT(*) FROM users_user;
+  ```
+
+- 특정 조건으로 데이터 조회
+
+  - 나이가 30살인 사람 이름 조회
+
+    ```python
+    User.objects.filter(age=30).values('first_name')
+    ```
+
+    ```sqlite
+    SELECT first_name FROM users_user WHERE age=30;
+    ```
+
+  - 대/소 관계 비교
+
+    - 나이가 30살 이상 인원
+
+      ```python
+      User.objects.filter(age__gte=30).count()
+      ```
+
+      ```sqlite
+      SELECT COUNT(*) FROM users_user WHERE age>=30;
+      ```
+
+    - 나이가 20살 이하 인원
+
+      ```python
+      User.objects.filter(age__lte=30).count()
+      ```
+
+      ```sqlite
+      SELECT COUNT(*) FROM users_user WHERE age<=20;
+      ```
+
+  - AND
+
+    - 나이가 30살이면서 성이 김씨 인원
+
+      ```python
+      User.objects.filter(age=30, last_name='김').count()
+      User.objects.filter(age=30).filter(last_name='김').count()
+      ```
+
+      ```sqlite
+      SELECT COUNT(*) FROM users_user WHERE age=30 AND last_name='김';
+      ```
+
+  - OR
+
+    - 나이가 30살이거나 성이 김씨 인원
+
+      ```python
+      from django.db.models import Q
+      User.objects.filter(Q(age=30)|Q(last_name='김'))
+      ```
+
+      ```sqlite
+      SELECT COUNT(*) FROM users_user WHERE age=30 OR last_name='김';
+      ```
+
+  - LIKE
+
+    - 지역번호가 02인 인원
+
+      ```python
+      User.objects.filter(phone__startswith='02-').count()
+      ```
+
+      ```sqlite
+      SELECT COUNT(*) FROM users_user WHERE phone LIKE '02-%';
+      ```
+
+  - 특정 컬럼 데이터만 조회
+
+    - 주소가 강원도이면서 성이 황씨인 이름
+
+      ```python
+      User.objects.filter(country='강원도', last_name='황').values('first_name')
+      ```
+
+      ```sqlite
+      SELECT first_name FROM users_user WHERE country='강원도' and last_name='황';
+      ```
+
+  - 정렬, LIMIT, OFFSET
+
+    - 나이가 많은 순으로 10명 조회
+
+      ```python
+      User.objects.order_by('-age')[:10]
+      ```
+
+      ```sqlite
+      SELECT * FROM users_user ORDER BY age DESC LIMIT 10;
+      ```
+
+    - 잔액이 적은 순으로 10명 조회
+
+      ```python
+      User.objects.order_by('balance')[:10]
+      ```
+
+      ```sqlite
+      SELECT * FROM users_user ORDER BY balance ASC LIMIT 10;
+      ```
+
+    - 잔액이 많은, 나이가 어린 순으로 10명 조회
+
+      ```python
+      User.objects.order_by('balance', '-age')[:10]
+      ```
+
+      ```sqlite
+      SELECT * FROM users_user ORDER BY balance, age DESC LIMIT 10;
+      ```
+
+    - 성, 이름 내림차순으로 5번째 있는 유저
+
+      ```python
+      User.objects.order_by('-last_name', '-first_name')[4]
+      ```
+
+      ```sqlite
+      SELECT * FROM users_user ORDER BY last_name DESC, first_name DESC LIMIT 1 OFFSET 4;
+      ```
+
+### Django Aggregation
+
+- 특정 필드 전체 합, 평균, 개수
+
+- 전체 유저 평균 나이
+
+  ```python
+  from django.db.models import Avg
+  User.objects.aggregate(Avg('age'))
+  ```
+
+  ```sqlite
+  SELECT AVG(age) FROM users_user;
+  ```
+
+- 표현식
+
+  - 성이 김씨 평균 나이
+
+    ```python
+    from django.db.models import Avg
+    User.objects.filter(last_name='김').aggregate(Avg('age'))
+    ```
+
+    ```sqlite
+    SELECT AVG(age) FROM users_user WHERE last_name='김';
+    ```
+
+  - 지역이 강원도 평균 계좌 잔고
+
+    ```python
+    from django.db.models import Avg
+    User.objects.filter(country='강원도').aggregate(Avg('balance'))
+    ```
+
+    ```sqlite
+    SELECT AVG(balance) FROM users_user WHERE country='강원도';
+    ```
+
+  - 계좌 잔고 중 가장 높은 값
+
+    ```python
+    from django.db.models import Max
+    User.objects.aggregate(Max('balance'))
+    ```
+
+    ```sqlite
+    SELECT MAX(balance) FROM users_user;
+    ```
+
+  - 계좌 잔고의 총 합
+
+    ```python
+    from django.db.models import Sum
+    User.objects.aggregate(Sum('balance'))
+    ```
+
+    ```sqlite
+    SELECT SUM(balance) FROM users_user;
+    ```
+
+- Annotate : 주석 -> 필드를 만들고 내용 채워넣기, 컬럼 하나 추가 => 원본 테이블 변하지 X
+
+  - 지역별 인원 수
+
+    ```python
+    from django.db.models import Count
+    
+    # 1
+    User.objects.values('country').annotate(Count('country'))
+    # 
+    ```
+
+    
+
