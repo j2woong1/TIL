@@ -11,5 +11,25 @@
   <hr>
   {% block content %}
   {% endblock %}
+  {% comment %} <div class="container">
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'accounts:logout' %}">[로그아웃]</a>
+      <a href="{% url 'accounts:update' %}">[회원 정보 수정]</a>
+      <a href="{% url 'accounts:change_password' %}">[비밀 번호 수정]</a>
+      <form action="{% url 'accounts:delete' %}" method="POST" style="display: inline;">
+        {% csrf_token %}
+        <input type="submit" value="회원탈퇴" class="btn btn-danger">
+      </form>
+    {% else %}
+      <a href="{% url 'accounts:signup' %}">[회원가입]</a>
+      <a href="{% url 'accounts:login' %}">[로그인]</a>
+    {% endif %}
+  </div>
+
+  <div class="container">
+    <h3>Hello, {{ user }}</h3>
+    {% block content %}
+    {% endblock content %}
+  </div> {% endcomment %}
 </body>
 </html>
