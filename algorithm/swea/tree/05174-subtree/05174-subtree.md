@@ -55,7 +55,7 @@ def subtree(node):
 T = int(input())
 
 for tc in range(1, T + 1):
-    E, N = map(int, input().split())  # N은 내가 원하는 루트
+    E, N = map(int, input().split())  
     arr = list(map(int, input().split()))
 
     left = [0] * (E + 2)  # 첫 번째 자식
@@ -183,3 +183,36 @@ for tc in range(1,int(input())+1):
     print(ans)
 ```
 
+- 해설 5
+
+  ```python
+  T = int(input())
+  
+  def size(root):
+      global cnt
+      if tree[root][0]:
+          cnt += 1
+          size(tree[root][0])
+      if tree[root][1]:
+          cnt += 1
+          size(tree[root][1])
+  
+  for tc in range(1, T+1):
+      E, N = map(int, input().split())  # 간선개수, root
+      tmp = list(map(int, input().split()))  # 부모-자식
+      tree = [[0] * 3 for _ in range(E+2)]  # [왼쪽자식, 오른쪽자식, 부모]
+      for i in range(E):
+          # [왼쪽자식, 오른쪽자식, 부모노드]
+          parent, child = tmp[i * 2], tmp[i * 2 + 1]
+          tree[child][2] = parent
+          if not tree[parent][0]:
+              tree[parent][0] = child
+          else:
+              tree[parent][1] = child
+  
+      cnt = 1
+      size(N)
+      print("#{} {}".format(tc, cnt)
+  ```
+
+  
