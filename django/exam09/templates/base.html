@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% if request.user.is_authenticated %}
+    <h3>{{ user.username }}</h3>
+    <a href="{% url 'reservations:index' %}">Index</a>
+    <a href="{% url 'reservations:create' %}">Create</a>
+    <form action="{% url 'accounts:logout' %}" method="POST">
+      {% csrf_token %}
+      <button>logout</button>
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <a href="{% url 'accounts:signup' %}">Signup</a>
+  {% endif %}
+  <hr>
+  <!-- Q4-3 -->
+  <img src="{% static 'ssafy.png' %}" alt="ssafy.png" width='20rem'>
+  <span>SSAFY EXAM</span>
+  <hr>
+  {% block content %}
+  {% endblock %}
+</body>
+</html>

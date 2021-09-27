@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Q4-2 -->
+  <h2>{{ reservation.title|upper }}</h2>
+  <p>인원: {{ reservation.personnel }}명</p>
+  <p>날짜: {{ reservation.date|date:"Y-m-d" }}</p>
+  <hr>
+{% endblock  %}

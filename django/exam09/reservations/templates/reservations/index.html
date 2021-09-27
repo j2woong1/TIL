@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Reservations</h1>
+  <hr>
+  {% for reservation in reservations %}
+    <p>글 제목: {{ reservation.title }}</p>
+    <a href="{% url 'reservations:detail' reservation.pk %}">[detail]</a>
+    <hr>
+  {% endfor %}
+{% endblock %}
