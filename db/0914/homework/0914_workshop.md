@@ -23,7 +23,7 @@
 
 1. countries 테이블을 생성하시오
 
-   ```sqlite
+   ```sql
    CREATE TABLE countries (
        id INTEGER PRIMARY KEY AUTOINCREMENT,
        room_num TEXT NOT NULL,
@@ -36,7 +36,7 @@
 
 2. 데이터를 입력하시오
 
-   ```sqlite
+   ```sql
    INSERT INTO countries (room_num, check_in, chech_out, grade,prce) 
    	VALUES ('B203','2019-12-31','2020-01-03', 'suite', 900) ,
    	('1102', '2020-01-04', '2020-01-08', 'suite', 850), 
@@ -51,31 +51,31 @@
 
 3. 테이블의 이름을 hotels 로 변경하시오
 
-   ```sqlite
+   ```sql
    ALTER TABLE countries RENAME TO hotels;
    ```
 
 4. 객실 가격을 내림차순으로 정렬하여 상위 2 개의 room_num 과 price 를 조회하시오
 
-   ```sqlite
+   ```sql
    SELECT room_num, price FROM hotels ORDER BY price DESC LIMIT 2; 
    ```
 
 5. grade 별로 분류하고 분류된 grade 개수를 내림차순으로 조회하시오
 
-   ```sqlite
+   ```sql
    SELECT grade, COUNT(grade) FROM hotels GROUP BY grade ORDER BY COUNT(grade) DESC;
    ```
 
 6. 객실의 위치가 지하 혹은 등급이 deluxe 인 객실의 모든 정보를 조회하시오
 
-   ```sqlite
+   ```sql
    SELECT * FROM hotels WHERE (room_num LIKE 'B%') OR (grade = 'deluxe');
    ```
 
 7. 지상층 객실이면서 2020 년 1 월 4 일에 체크인 한 객실의 목록을 price 오름차순으로 조회하시오
 
-   ```sqlite
+   ```sql
    SELECT * FROM hotels WHERE (room_num NOT LIKE 'B%') AND (check_in = '2020-01-04') ORDER BY price ASC;
    ```
 
@@ -99,7 +99,7 @@
 
 1. user 테이블 전체 데이터를 조회하시오
 
-   ```sqlite
+   ```sql
    SELECT * FROM users_user;
    ```
 
@@ -109,7 +109,7 @@
 
 2. id 가 19 인 사림의 age 를 조회하시오 .
 
-   ```sqlite
+   ```sql
    SELECT age FROM users_user WHERE id=19;
    ```
 
@@ -121,7 +121,7 @@
 
 3. 모든 사람의 age 를 조회하시오 .
 
-   ```sqlite
+   ```sql
    SELECT age FROM users_user;
    ```
 
@@ -131,7 +131,7 @@
 
 4. age 가 40 이하인 사림들의 id 와 balance 를 조회하시오 .
 
-   ```sqlite
+   ```sql
    SELECT id, balance FROM users_user WHERE age <= 40;
    ```
 
@@ -148,7 +148,7 @@
 
 5. last_name 이 ‘김’이고 balance 가 500 이상인 사람들의 first_name 을 조회하시오.
 
-   ```sqlite
+   ```sql
    SELECT first_name FROM users_user WHERE last_name='김' AND balance>=500;
    ```
 
@@ -161,7 +161,7 @@
 
 6. first_name 이 ‘수’로 끝나면서 행정구역이 경기도인 사람들의 balance 를 조회하시오.
 
-   ```sqlite
+   ```sql
    SELECT balance FROM users_user WHERE first_name LIKE '%수' AND country='경기도';
    ```
 
@@ -171,7 +171,7 @@
 
 7. balance 가 2000 이상이거나 age 가 40 이하인 사람의 총 인원수를 구하시오 .
 
-   ```sqlite
+   ```sql
    SELECT COUNT(*) FROM users_user WHERE balance >= 2000 OR age <= 40;
    ```
 
@@ -182,7 +182,7 @@
 
 8. phone 앞자리가 010’ 으로 시작하는 사람의 총원을 구하시오 .
 
-   ```sqlite
+   ```sql
    SELECT COUNT(*) FROM users_user WHERE phone LIKE '010%';
    ```
 
@@ -192,7 +192,7 @@
 
 9. 이름이 ‘김옥자’인 사람의 행정구역을 경기도로 수정하시오 .
 
-   ```sqlite
+   ```sql
    UPDATE users_user SET country='경기도' WHERE first_name='옥자' AND list_name='김';
    
    SELECT country FROM users_user WHERE first_name='옥자' AND list_name='김';
@@ -208,7 +208,7 @@
    
 10. 이름이 ‘백진호’인 사람을 삭제하시오 .
 
-    ```sqlite
+    ```sql
     DELETE FROM users_user WHERE first_name='진호' AND last_name='백';
     SELECT * FROM users_user WHERE first_name='진호' AND last_name='백';
     ```
@@ -219,7 +219,7 @@
 
 11. balance 를 기준으로 상위 4 명의 first_name, last_name, balance 를 조회하시오.
 
-    ```sqlite
+    ```sql
     SELECT first_name, last_name, balance FROM users_user ORDER BY balance DESC LIMIT 4;
     ```
 
@@ -233,7 +233,7 @@
 
 12. phone 에 '123’ 을 포함하고 age 가 30 미만인 정보를 조회하시오 .
 
-    ```sqlite
+    ```sql
     SELECT * FROM users_user WHERE phone LIKE '%123%' AND age < 30;
     ```
 
@@ -243,7 +243,7 @@
 
 13. phone 이 010’ 으로 시작하는 사람들의 행정 구역을 중복 없이 조회하시오 .
 
-    ```sqlite
+    ```sql
     SELECT DISTINCT country FROM users_user WHERE phone LIKE '010%';
     ```
 
@@ -253,7 +253,7 @@
 
 14. 모든 인원의 평균 age 를 구하시오 .
 
-    ```sqlite
+    ```sql
     SELECT AVG(age) FROM users_user;
     ```
 
@@ -264,7 +264,7 @@
 
 15. 박씨의 평균 balance 를 구하시오 .
 
-    ```sqlite
+    ```sql
     SELECT AVG(balance) FROM users_user WHERE last_name='박';
     ```
 
@@ -274,7 +274,7 @@
 
 16. 경상북도에 사는 사람 중 가장 많은 balance 의 액수를 구하시오 .
 
-    ```sqlite
+    ```sql
     SELECT MAX(balance) FROM users_user WHERE country = '경상북도';
     ```
 
@@ -284,7 +284,7 @@
 
 17. 제주특별자치도에 사는 사람 중 balance 가 가장 많은 사람의 first_name 을 구하시오 .
 
-    ```sqlite
+    ```sql
     SELECT first_name FROM users_user WHERE country='제주특별자치도' ORDER BY balance DESC LIMIT 1;
     ```
 
