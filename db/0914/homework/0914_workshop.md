@@ -25,11 +25,12 @@
 
    ```sqlite
    CREATE TABLE countries (
-   	room_num TEXT,
-       check_in TEXT,
-       check_out TEXT,
-       grade TEXT,
-       price INTEGER
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       room_num TEXT NOT NULL,
+       check_in TEXT NOT NULL,
+       check_out TEXT NOT NULL,
+       grade TEXT NOT NULL,
+       price INT NOT NULL
    );
    ```
 
@@ -41,6 +42,11 @@
    	('1102', '2020-01-04', '2020-01-08', 'suite', 850), 
    	('303', '2020-01-01', '2020-01-03', 'deluxe', 500), 
    	('807', '2020-01-04', '2020-01-07', 'superior', 300);
+   
+   INSERT INTO countries VALUES (1, 'B203', '2019-12-31', '2020-01-03', 'suite', 900);
+   INSERT INTO countries VALUES (2, '1102', '2020-01-04', '2020-01-08', 'suite', 850);
+   INSERT INTO countries VALUES (3, '303', '2020-01-01', '2020-01-03', 'deluxe', 500);
+   INSERT INTO countries VALUES (4, '807', '2020-01-04', '2020-01-07', 'superior', 300);
    ```
 
 3. 테이블의 이름을 hotels 로 변경하시오
@@ -64,13 +70,13 @@
 6. 객실의 위치가 지하 혹은 등급이 deluxe 인 객실의 모든 정보를 조회하시오
 
    ```sqlite
-   SELECT * FROM hotels WHERE room_num LIKE 'B%' OR grade = 'deluxe';
+   SELECT * FROM hotels WHERE (room_num LIKE 'B%') OR (grade = 'deluxe');
    ```
 
 7. 지상층 객실이면서 2020 년 1 월 4 일에 체크인 한 객실의 목록을 price 오름차순으로 조회하시오
 
    ```sqlite
-   SELECT * FROM hotels WHERE room_num NOT LIKE 'B%' AND check_in = '2020-01-04' ORDER BY price ASC;
+   SELECT * FROM hotels WHERE (room_num NOT LIKE 'B%') AND (check_in = '2020-01-04') ORDER BY price ASC;
    ```
 
 
@@ -98,7 +104,7 @@
    ```
 
    ```python
-   User.objects.all()
+   users = User.objects.all()
    ```
 
 2. id 가 19 인 사림의 age 를 조회하시오 .
@@ -108,7 +114,9 @@
    ```
 
    ```python
-   User.objects.filter(id=19).values('age')
+   users = User.objects.filter(id=19).values('age')
+   
+   User.objects.get(pk=19).age
    ```
 
 3. 모든 사람의 age 를 조회하시오 .
@@ -118,7 +126,7 @@
    ```
 
    ```python
-   User.objects.all().values('age')
+   users = User.objects.all().values('age')
    ```
 
 4. age 가 40 이하인 사림들의 id 와 balance 를 조회하시오 .
@@ -128,7 +136,14 @@
    ```
 
    ```python
-   User.objects.filter(age__lte=40).values('id', 'balance')
+   users = User.objects.filter(age__lte=40).values('pk', 'balance')
+   for user in users:
+       print(user.get('pk'))
+       print(user.get('balance'))
+       
+   users = User.objects.filter(age__lte=40)
+   for user in users:
+       print(user.pk, user.balance)
    ```
 
 5. last_name 이 ‘김’이고 balance 가 500 이상인 사람들의 first_name 을 조회하시오.
@@ -138,7 +153,10 @@
    ```
 
    ```python
-   User.objects.filter(last_name='김', balance__gte=500).values('first_name')
+   users = User.objects.filter(last_name='김', balance__gte=500).values('first_name')
+   
+   from django.db.models import Q
+   User.objects.filter(Q(last_name='김') | Q(balance__gte=500)).values('first_name')
    ```
 
 6. first_name 이 ‘수’로 끝나면서 행정구역이 경기도인 사람들의 balance 를 조회하시오.
@@ -148,7 +166,7 @@
    ```
 
    ```python
-   User.objects.filter(first_name__endswith='수', country='경기도').values('balance')
+   users = User.objects.filter(first_name__endswith='수', country='경기도').values('balance')
    ```
 
 7. balance 가 2000 이상이거나 age 가 40 이하인 사람의 총 인원수를 구하시오 .
@@ -181,14 +199,13 @@
    ```
 
    ```python
-   users = User.objects.filter(last_name='옥자', first_name='김')
-   for user in users:
-       user.country = '경기도'
-       user.save()
+   users = User.objects.filter(last_name='옥자', first_name='김')[0]
+   user.country = '경기도'
+   user.save()
        
    User.objects.filter(last_name='옥자', first_name='김').update(country='경기도');
    ```
-
+   
 10. 이름이 ‘백진호’인 사람을 삭제하시오 .
 
     ```sqlite
@@ -207,17 +224,21 @@
     ```
 
     ```python
-    User.objects.order_by('-balance')[:4].values('first_name', 'last_name', 'balance')
+    User.objects.order_by('-balance').values('first_name', 'last_name', 'balance')[:4]
+    for user in users:
+      print(user.get('first_name'))
+      print(user.get('last_name'))
+      print(user.get('balance'))
     ```
 
-12. phone 에 123’ 을 포함하고 age 가 30 미만인 정보를 조회하시오 .
+12. phone 에 '123’ 을 포함하고 age 가 30 미만인 정보를 조회하시오 .
 
     ```sqlite
     SELECT * FROM users_user WHERE phone LIKE '%123%' AND age < 30;
     ```
 
     ```python
-    users = User.objects.filter(phone__contains='123', age__lte=30)
+    users = User.objects.filter(phone__contains='123', age__lt=30)
     ```
 
 13. phone 이 010’ 으로 시작하는 사람들의 행정 구역을 중복 없이 조회하시오 .
@@ -227,16 +248,17 @@
     ```
 
     ```python
-    User.objects.filter(phone__startswith='010').values('country').distinct()
+    users = User.objects.filter(phone__startswith='010').values('country').distinct()
     ```
 
 14. 모든 인원의 평균 age 를 구하시오 .
 
     ```sqlite
-    SELECT AVG(age) FROM users.user;
+    SELECT AVG(age) FROM users_user;
     ```
 
     ```python
+    from django.db.models import Avg
     User.objects.aggregate(Avg('age'))
     ```
 
@@ -253,7 +275,7 @@
 16. 경상북도에 사는 사람 중 가장 많은 balance 의 액수를 구하시오 .
 
     ```sqlite
-    SELECT MAX(balance) FROM users_user WHERE country = '경상북도'
+    SELECT MAX(balance) FROM users_user WHERE country = '경상북도';
     ```
 
     ```python
@@ -267,7 +289,9 @@
     ```
 
     ```python
-    User.objects.filter(country='제주특별자치도').order_by('-balance').values('first_name')[0]
+    user = User.objects.filter(country='제주특별자치도').order_by('-balance').values('first_name')[0]
+    
+    user = User.objects.filter(country='제주특별자치도').order_by('-balance').values('first_name').first()
     ```
 
 

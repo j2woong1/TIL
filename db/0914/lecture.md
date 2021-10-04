@@ -75,6 +75,59 @@
 
 
 
+## 기본 준비 사항
+
+* django app
+
+  * 가상환경 세팅
+
+  * 패키지 설치
+
+  * migrate
+
+    ```bash
+    $ python manage.py migrate
+    $ python manage.py sqlmigrate users 0001
+    $ python manage.py shell_plus --print-sql
+    ```
+
+* `db.sqlite3` 활용
+
+  * `sqlite3`  실행
+
+    ```bash
+    $ ls
+    db.sqlite3 manage.py ...
+    $ sqlite3 db.sqlite3
+    ```
+
+  * csv 파일 data 로드
+
+    ```sqlite
+    sqlite > .tables
+    auth_group                  django_admin_log
+    auth_group_permissions      django_content_type
+    auth_permission             django_migrations
+    auth_user                   django_session
+    auth_user_groups            auth_user_user_permissions  
+    users_user
+    sqlite > .mode csv
+    sqlite > .import users.csv users_user
+    sqlite > SELECT COUNT(*) FROM users_user;
+    100
+    ```
+
+* 확인
+
+  * sqlite3에서 스키마 확인
+
+    ```sqlite
+    sqlite > .schema users_user
+    CREATE TABLE IF NOT EXISTS "users_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "first_name" varchar(10) NOT NULL, "last_name" varchar(10) NOT NULL, "age" integer NOT NULL, "country" varchar(10) NOT NULL, "phone" varchar(15) NOT NULL, "balance" integer NOT NULL);
+    ```
+
+
+
 ## Table
 
 - DB 생성

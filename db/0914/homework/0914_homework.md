@@ -29,6 +29,10 @@
 
 > RDBMS의 개념적 정의와 이를 기반으로 한 DB Engine 의 종류 세가지 이상 작성하시오
 
+- RDBMS
+  - 데이터를 관계로서 표현.
+  - 행과 열의 집합으로 구성된 테이블의 묶음 형식으로 데이터를 제공
+  - 열이 속성을 나타내고 테이블의 각 행이 레코드를 나타내는 테이블 형식으로 데이터를 저장
 - `MySQL`, `SQLite`, `PostgreSQL`, `ORACLE`, `MS SQL`
 
 
@@ -45,10 +49,10 @@
 > );
 > ```
 >
-> (1) INSERT INTO classmates (name, age, address) VALUES(‘ 홍길동’홍길동’, 20, seoul ’);
-> (2) INSERT INTO classmates VALUES(‘ 홍길동’홍길동’, 20, seoul);
-> (3) insert into classmates values(address=‘ seoul ’, age=20, 홍길동’홍길동’);
-> (4) insert into classmates (address, age, name) values seoul ’, 20, 홍길동’);
+> (1) INSERT INTO classmates (name, age, address) VALUES('홍길동', 20, 'seoul ’);
+> (2) INSERT INTO classmates VALUES('홍길동', 20, 'seoul');
+> (3) insert into classmates values(address=‘seoul ’, age=20, name=’홍길동’);
+> (4) insert into classmates (address, age, name) values ('seoul ’, 20, '홍길동');
 
 - (3)
 
@@ -58,5 +62,6 @@
 
 > SQL에서 사용가능한 와일드카드 문자인 %와 _을 비교하여 작성하시오
 
-- `%` : 문자 길이 제한 X
-- `_` : 하나의 문자
+- `%` : 문자 길이 제한 X -> 0개 이상의 문자열
+- `_` : 하나의 문자 -> 1개의 문자열
+
