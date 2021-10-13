@@ -41,7 +41,7 @@
 
 > 다음과 같은 스키마를 가지는 테이블이 있을 때, 아래의 보기 (1) ~ (4) 중 틀린 문장을 고르시오
 >
-> ```sqlite
+> ```sql
 > CREATE TABLE classmates (
 > 	name TEXT,
 >     age INT,
