@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>todo index</h1>
+
+{% for todo in todos %}
+    <div>
+        <h1>할 일: {{ todo.title }}</h1>
+        <p>작성자: {{ todo.author }}</p>
+        <p>완료 여부: {{ todo.completed }}</p>
+        <hr>
+    </div>
+{% endfor %}
+
+{% endblock content %}
