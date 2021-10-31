@@ -7,7 +7,7 @@
 ```bash
 $ python -m venv venv
 $ source venv/Scripts/activate
-$ pip install django django-extensions ipython django-bootstrap-v5
+$ pip install django django-extensions ipython django-bootstrap-v5 djangorestframework django-seed pip install drf-yasg   
 $ pip freeze > requirements.txt
 ```
 

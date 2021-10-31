@@ -9,9 +9,10 @@
 </head>
 <body>
   <div class="container">
+    <h3>Hello, {{ request.user }}</h3>
     {% if request.user.is_authenticated %}
-      <h3>Hello, {{ user }}</h3>
-      <a href="{% url 'accounts:update' %}">회원정보수정</a>
+      <a href="{% url 'accounts:profile' request.user.username %}">내 프로필</a>
+      <a href="{% url 'accounts:update' %}">[회원정보수정]</a>
       <form action="{% url 'accounts:logout' %}" method="POST">
         {% csrf_token %}
         <input type="submit" value="Logout">

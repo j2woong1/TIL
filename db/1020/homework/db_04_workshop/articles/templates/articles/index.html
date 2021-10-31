@@ -14,12 +14,16 @@
     <p>글 제목 : {{ article.title }}</p>
     <p>글 내용 : {{ article.content }}</p>
     <div>
-      <form action="{% url 'articles:likes' article.pk %}" method="POST">
+      <form action="{% url 'articles:likes' article.pk %}" method="POST" class="d-inline">
         {% csrf_token %}
         {% if user in article.like_users.all %}
-          <input type="submit" value="좋아요 취소">
+          <button class="btn btn-link">
+          <i class="fas fa-heart fa-lg" style="color:crimson;"></i>
+          </button>
         {% else %}
-          <input type="submit" value="좋아요">
+          <button class="btn btn-link">
+          <i class="fas fa-heart fa-lg" style="color:black;"></i>
+          </button>
         {% endif %}
       </form>
     </div>

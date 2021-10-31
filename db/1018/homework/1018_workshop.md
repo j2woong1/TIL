@@ -35,6 +35,14 @@
           return self.content
   ```
 
+- `admin.py`
+
+  ```python
+  from .models import Article, Comment
+  
+  admin.site.register(Comment)
+  ```
+  
 - `forms.py`
 
   ```python

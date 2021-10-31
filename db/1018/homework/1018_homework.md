@@ -34,7 +34,7 @@
 > ```
 
 - 컬럼 : `answer_id`
-- 테이블 : `answer_comment`
+- 테이블 : `articles_comment`
 
 
 
@@ -69,12 +69,14 @@
 > from django.shortcuts import render, redirect, get_object_or_404
 > from .models import Article
 > 
-> @login_required
 > @require_POST
 > def delete(request, article_pk):
->     article = get_object_or_404(Article, pk=article_pk)
->     article.delete()
->     return redirect('articles:index')
+>     if request.user.is_authenticated:
+>         article = get_object_or_404(Article, pk=article_pk)
+>         if request.user == article.user:
+>             article.delete()
+>             return redirect('articles:index')
+>     return redirect('articles:detail', article_pk)
 > ```
 >
 > ```python

@@ -28,7 +28,7 @@
 > ```
 
 ```
-from . import views # (a), (b)
+from articles import views # (a), (b)
 path('', views.index, name='index'), #(c)
 ```
 

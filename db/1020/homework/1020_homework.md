@@ -45,7 +45,7 @@
 > ```
 
 - (a) : `request.user`
-- (b) : `article.like.users`
+- (b) : `article.like_users.all`
 
 
 
@@ -106,7 +106,7 @@
 - `CustomUserCreationForm` 정의
 
 ```python
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 
 class CustomUserCreationForm(UserCreationForm):
@@ -193,8 +193,8 @@ class Article(models.Model):
 > </div>
 > ```
 
-- (a) : `following`
-- (b) : `followers`
+- (a) : `person.followings.all`
+- (b) : `person.followers.all`
 - (c) : `request.user`
 - (d) : `person`
 - (e) : `person.pk`
