@@ -1,29 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    {{person.username}}
+    <h1 class="text-center">{{ person.username }}님의 프로필</h1>
     <hr>
-    <h2>게시글</h2>
+
+    <h2>{{ person.username }}가 쓴 글</h2>
     {% for article in person.article_set.all %}
-        <div>제목 : {{article.title}}</div>
-        <p>좋아요 수 : {{article.like_users.count}}</p>
-        <hr>
+        <div>{{ article.title }}</div>
     {% endfor %}
-    {% if user != person %}
-        <div>
-            <h2>follower</h2>
-            <p>팔로워 수 : {{person.followers.all|length}}</p>
-            {% for person in person.followers.all %}
-                <p>{{person.username}}</p>
-            {% endfor %}
-            <form action="{% url 'accounts:follow'  person.pk %}" method="POST">
-                {% csrf_token %}
-                {% if user in person.followers.all %}
-                    <input type="submit" value="Unfollow">
-                {% else %}
-                    <input type="submit" value="follow">
-                {% endif %}
-            </form>
-        </div>
-    {% else %}
-    {% endif %}
+
+    <hr>
+
+    <h2>{{ person.username }}가 쓴 댓글</h2>
+    {% for comment in person.comment_set.all %}
+        <div>{{ comment.content }}</div>
+    {% endfor %}
+
+    <hr>
+
+    <h2>{{ person.username }}가 좋아요한 글</h2>
+    {% for article in person.like_articles.all %}
+        <div>{{ article.title }}</div>
+    {% endfor %}
+
+    <hr>
+
+    <a href="{% url 'articles:index' %}">back</a>
 {% endblock content %}
