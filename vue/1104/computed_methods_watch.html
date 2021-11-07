@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div id="app">
+      <h1>a1 : {{ a1 }}</h1>
+      <h1>a2 : {{ a2 }}</h1>
+      <button @click="changeData">data 변경</button>
+      <h3>add_methods : {{ add_methods() }}</h3>
+      <h3>add_methods : {{ add_methods() }}</h3>
+      <h3>add_computed : {{ add_computed }}</h3> <!-- computed : 1번만 실행-->
+      <h3>add_computed : {{ add_computed }}</h3>
+      <h3>get random methods: {{ getRandomMethods() }}</h3>
+      <h3>get random methods: {{ getRandomMethods() }}</h3>
+      <h3>get random computed: {{ getRandomComputed }}</h3>
+      <h3>get random computed: {{ getRandomComputed }}</h3>
+    </div>  
+
+    <!-- vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Lodash -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          a1 : 100,
+          a2 : 200,
+        },
+        methods: {
+          add_methods: function () {
+            console.log('methods 실행됨')
+            return this.a1 + this.a2
+          },
+          changeData: function () {
+            this.a1 = Math.random()
+            this.a2 = 2222
+          },
+          getRandomMethods: function () {
+            console.log('methods 실행됨')
+            return Math.random()
+          }
+        },
+        computed: {
+          add_computed: function () {
+            console.log('computed 실행됨')
+            return this.a1 + this.a2
+          },
+          getRandomComputed: function () {
+            console.log('computed 실행됨')
+            return Math.random()
+          }
+        }
+      })
+    </script>
+</body>
+</html>

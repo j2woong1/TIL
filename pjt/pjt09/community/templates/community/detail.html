@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <h2 class="text-center">리뷰 상세 조회</h2>
+  <br>
+  <h3>{{ review.pk }} 번째 글</h3>
+  <hr>
+  <p>제목: {{ review.title }}</p>
+  <p>영화 제목: {{ review.movie_title }}</p>
+  <p>내용: {{ review.content }}</p>
+  <p>평점: {{ review.rank }}</p>
+  <p>작성 시각: {{ review.created_at }}</p>
+  <p>수정 시각: {{ review.updated_at }}</p>
+  <hr>
+  <h4>댓글 목록</h4>
+  {% if comments|length %}
+    <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+  {% endif %}
+  {% for comment in comments %}
+    <div>{{ comment.user }} - {{ comment.content }}</div>
+  {% empty %}
+    <p><b>댓글이 없어요..</b></p>
+  {% endfor %}
+  <hr>
+  {% if request.user.is_authenticated %}
+    <form action="{% url 'community:create_comment' review.pk %}" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form comment_form %}
+      <hr>
+      <div class="d-flex justify-content-between">
+        <a href="{% url 'community:index' %}" class="btn btn-secondary btn-sm">이전</a>
+        <input type="submit" value="작성" class="btn btn-primary btn-sm">
+      </div>
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-sm">댓글을 작성하려면 로그인하세요</a>
+  {% endif %}
+{% endblock  %}

@@ -1,0 +1,53 @@
+<div class="jumbotron text-center text-white bg-dark">
+  <p class="lead mb-1">작성자 정보</p>
+  <h1 class="display-4">{{ person.username }}</h1>
+  <hr>
+  {% with followings=person.followings.all followers=person.followers.all %}
+    <p class="lead" id="follow-count">
+      팔로잉 : {{ followings|length }} / 팔로워 : {{ followers|length }}
+    </p>
+    <!-- 팔로우 버튼 -->
+    {% if request.user != person %}
+      <form id="follow-form" data-user-id="{{ person.pk }}">
+        {% csrf_token %}
+        <div id="follow-button">
+          {% if request.user in followers %}
+            <button class="btn-secondary btn-lg" role="button">Unfollow</button>
+          {% else %}
+            <button class="btn-primary btn-lg" role="button">Follow</button>
+          {% endif %}
+        </div>
+      </form>
+    {% endif %}
+  {% endwith %}
+
+<script>
+  const form = document.querySelector('#follow-form')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+  form.addEventListener('submit', event => {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/accounts/follow/${userId}/`,
+      headers: {'X-CSRFToken': csrftoken},
+    })
+    .then(response => {
+      const followCountStatus = document.querySelector('#follow-count')
+      const followBtn = document.querySelector('#follow-button')
+      const { followed, followersCount, followingsCount } = response.data
+
+      const followHTML = '<button class="btn-primary btn-lg" role="button">Follow</button>'
+      const unfollowHTML = '<button class="btn-secondary btn-lg" role="button">Unfollow</button>'
+      followBtn.innerHTML = followed ? unfollowHTML : followHTML
+      followCountStatus.innerText = `팔로잉 : ${followingsCount} / 팔로워 : ${followersCount}`
+    })
+    .catch(error => {
+      if (error.response.status === 401) {
+        window.location.href = 'http://127.0.0.1:8000/accounts/login/'
+      }
+    })
+  })
+</script>
+</div>

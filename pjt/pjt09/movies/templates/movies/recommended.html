@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-end">
+    <h1>추천 영화 목록</h1>
+    <p>사용자가 선호하는 장르에 맞게 영화를 선정하였습니다.</p>
+    <p>
+      <a href="{% url 'movies:recommended' %}" class="btn btn-dark btn-sm me-3">다시 추천</a>
+      <a href="{% url 'movies:index' %}" class="btn btn-dark btn-sm">모든 영화 보기</a>
+    </p>
+  </div>
+  <hr>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for movie in recommended_movies %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ movie.poster_path }}" class="card-img-top h-100" alt="movie_poster num {{ movie.pk }}">
+          <div class="card-body">
+            <a href="{% url 'movies:detail' movie.pk %}" class="text-decoration-none text-dark">
+              <h5 class="card-title fw-bold title-font">{{ movie.title }}</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}    
+  </div>
+{% endblock %}

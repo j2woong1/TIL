@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <h1 class="text-center">회원가입</h1>
+  <br>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <hr>
+    <a href="{% url 'community:index' %}" class="btn btn-secondary btn-sm">취소</a>
+    <input type="submit" value="가입" class="btn btn-primary btn-sm">
+  </form>
+{% endblock  %}

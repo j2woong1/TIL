@@ -144,3 +144,70 @@
     - `Document.createElement()` : 작성한 태그 명 HTML 생성 반환
 
 ### Event
+
+- `~하면 ~한다`
+
+- handler
+
+  - `addEventListener()`
+    - `EventTarget.addEventListener()`
+      - 지정 이벤트가 대상 전달될 때마다 호출 함수 설정
+    - `target.addEventListener(type, listener[, options])`
+      - type
+        - 반응 이벤트 유형 : 대소문자 구분 문자열
+      - listener
+        - 지정 타입 이벤트 발생 시 알림 수신 객체
+        - EvenListener 인터페이스, JS function 객체 (콜백 함수)
+    - 대상에 특정 이벤트가 발생하면 할 일을 등록하자
+      - `EventTarget.addEventListener(type, listener)`
+      - `EventTarget` : 대상
+      - `type` : 특정 이벤트
+      - `listener` : 할 일
+
+- 취소
+
+  - `Event.preventDefault()`
+  - 현재 이벤트 기본 동작 중단
+
+- 실습
+
+  ```html
+  <form action="/todo/">
+      <input type="text">
+      <button>Add</button>
+  </form>
+  <ul>
+      
+  </ul>
+  ```
+
+  ```javascript
+  // 이벤트 타겟 설정
+  const form = document.querySelector('form')
+  
+  function addTodo (event) {
+      // event 기본 동작 X
+      event.preventDefault()
+      
+      // input 요소 선택, value 값 저장
+      const input = document.querySelector('input')
+      const content = input.value
+      
+      if (content.trim()) {
+          // 새로운 li 요소 생성, input value -> innerText
+          const li = document.createElement('li')
+          li.innerText = content
+          
+          // ul 요소 선택, ul 자식 요소 -> li 요소
+          const ul = document.querySelector('ul')
+          ul.appendChild(li)
+      } else {
+          alert('할 일을 입력해주세요')
+      }
+      event.target.reset()
+  }
+  
+  form.addEventListener('submit', addTodo)
+  ```
+
+  

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  {% include 'accounts/follow.html' %}
+  <div class="text-center">
+    <h3 class="mt-3">좋아하는 장르</h3>
+    {% for genre in person.favorite_genres.all %}
+      | {{ genre }}
+    {% endfor %} |
+  </div>
+
+  <hr>
+
+  <div class="text-center">
+    <h3>작성한 리뷰</h3>
+    {% if person.review_set.count > 0 %}
+      {% for review in person.review_set.all %}
+        <a href="{% url 'community:detail' review.pk %}" class="text-decoration-none">{{ review.title }}</a>
+      {% endfor %}
+    {% else %}
+      <p>작성한 리뷰가 아직 없습니다.</p>
+    {% endif %}
+  </div>
+
+  <hr>
+
+  <div class="text-center">
+    <h3>작성한 댓글</h3>
+    {% if person.comment_set.count > 0 %}
+      {% for comment in person.comment_set.all %}
+        <a href="{% url 'community:detail' comment.review.pk %}" class="text-decoration-none">{{ comment.content }}</a>
+      {% endfor %}
+    {% else %}
+      <p>작성한 댓글이 아직 없습니다.</p>
+    {% endif %}
+  </div>
+
+  <hr>
+
+  <div class="text-center">
+    <h3>좋아요 누른 글</h3>
+    {% if person.like_reviews.count > 0 %}
+      {% for review in person.like_reviews.all %}
+        <a href="{% url 'community:detail' review.pk %}" class="text-decoration-none">{{ review.title }}</a>
+      {% endfor %}
+    {% else %}
+      <p>좋아요를 누른 글이 아직 없습니다.</p>
+    {% endif %}
+  </div>
+
+{% endblock %}
