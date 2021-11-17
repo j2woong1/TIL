@@ -30,7 +30,7 @@
     - document : 페이지 컨텐츠 Entry Point
     - navigator, location, history, screen
 
-  ![image-20211028091351384](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211028091351384.png)
+  ![image-20211028091351384](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211028091351384.png)
 
   - 해석
 
@@ -40,7 +40,7 @@
 
   - 조작
 
-    ![image-20211028091534729](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211028091534729.png)
+    ![image-20211028091534729](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211028091534729.png)
 
 - BOM
 
@@ -136,7 +136,7 @@
   </html>
   ```
 
-  ![image-20211028144204853](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211028144204853.png)
+  ![image-20211028144204853](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211028144204853.png)
 
 - 변경
 

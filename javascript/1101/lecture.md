@@ -35,7 +35,7 @@
   - 순차적, 직렬적 task 수행
   - 요청 보낸 후 응답 받아야지 다음 동작 : blocking
 
-  ![image-20211101170836364](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211101170836364.png)
+  ![image-20211101170836364](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101170836364.png)
 
   ```html
   <button>버튼</button>
@@ -56,13 +56,13 @@
     - alert 이후 코드 : alert 처리 끝날 때까지 실행 X
     - `JavaScript는 single threaded`
 
-  ![image-20211101212427252](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211101212427252.png)
+  ![image-20211101212427252](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101212427252.png)
 
 - 비동기식
 
   - 병렬적 Task 수행 : non-blocking
 
-  ![image-20211101212722053](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211101212722053.png)
+  ![image-20211101212722053](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101212722053.png)
 
   ```javascript
   const request = new XMLHttpRequest()
@@ -75,7 +75,7 @@
   console.log('data: ${todo}') // console.log 실행
   ```
 
-  ![image-20211101215533400](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211101215533400.png)
+  ![image-20211101215533400](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101215533400.png)
 
   - 요청 보내고 응답 기다리지 않고 다음 코드 실행
   - 변수 todo -> 응답 데이터 할당 X, 빈 데이터 출력

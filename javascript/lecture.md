@@ -1,3 +1,217 @@
+- 기초
+
+  ### Intro
+
+  - 브라우저
+    - 웹 서버에서 이동, 클라이언트 ~ 서버 양방향 통신
+    - HTML 문서, 파일 출력 GUI 기반 SW
+    - 인터넷 컨텐츠 검색, 열람
+  - JavaScript 필요성
+    - 브라우저 화면 동적
+    - 브라우저 조작 유일 언어
+  - 브라우저 기능
+    - DOM 조작
+      - 문서 (HTML) 조작
+    - BOM 조작
+      - navigator, screen, location, frames, history, XHR
+    - JavaScript Core (ECMAScript)
+      - Data Structure (Object, Array), Conditional Expression, Iteration
+
+  ### DOM (Document Object Model)
+
+  - DOM
+
+    - HTML, XML 문서 다루는 문서 프로그래밍 인터페이스
+    - 문서 구조화, 구조화된 구성 요소 -> 하나 객체로 취급 : 논리적 트리 모델
+    - 각 요소 -> 객체 (object) 취급
+    - 단순 속성 접근, 메서드 활용 + 프로그래밍 언어적 특성 활용
+    - 주요 객체
+      - window : DOM 표현 창, 최상위 객체, 작성 시 생략 가능
+      - document : 페이지 컨텐츠 Entry Point
+      - navigator, location, history, screen
+
+    ![image-20211028091351384](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211028091351384.png)
+
+    - 해석
+
+      - 파싱 (Parsing)
+        - 구문 분/해석
+        - 브라우저 : 문자열 해석 -> DOM Tree 제작 과정
+
+    - 조작
+
+      ![image-20211028091534729](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211028091534729.png)
+
+  - BOM
+
+    - Browser Object Model
+    - 자바스크립트 ~ 브라우저 소통 모델
+
+  ### DOM 조작
+
+  - 개념
+
+    - 순서
+      - 선택 (Select)
+      - 변경 (Manipulation)
+
+  - 상속 구조
+
+    - EventTarget
+      - Event Listener 가질 수 있는 객체가 구현한 DOM 인터페이스
+    - Node
+      - 여러 가지 DOM 타입들이 상속하는 인터페이스
+    - Element
+      - Document 안 모든 객체 상속 -> 가장 범용적 기반 클래스
+      - 부모 Node, 그 부모 EventTarget 속성 상속
+    - Document
+      - 브라우저 불러온 웹 페이지
+      - DOM 트리 진입점 (entry point)
+    - HTMLElement
+      - 모든 종류 HTML
+      - 부모 element 속성 상속
+
+  - 선택 
+
+    - 메서드
+      - `Document.querySelector(selector)`
+        - 제공한 선택자와 일치하는 element 하나 선택
+        - 제공한 CSS selector 만족 -> 첫 번째 element 객체 반환, 없으면 null
+      - `Document.querySelectorAll(selector)`
+        - 제공한 선택자와 일치하는 여러 element 선택
+        - 매칭할 하나 이상의 selector 포함한 유효한 CSS selector 인자
+        - 지정된 selector 일치한 NodeList 반환
+    - 메서드별 반환 타입
+      - 단일 element
+        - `getElementById()`
+        - `querySelector()`
+      - HTMLCollection
+        - `getElementsByTagName()`
+        - `getElementsByClassName()`
+      - NodeList
+        - `querySelectorAll()`
+    - HTMLCollection & NodeList
+      - 항목 접근 index 제공 : 유사 배열
+      - HTMLCollection
+        - name, id, index 속성으로 각 항목 접근 가능
+        - Live Collection -> DOM 변경사항 실시간 반영
+      - NodeList
+        - index로만 각 항목 접근 가능
+        - 다양한 메서드 사용 가능
+        - Live Collection -> DOM 변경사항 실시간 반영
+        - `querySelectorAll()` -> Static Collection => 실시간 반영 X
+    - Collection
+      - Live Collection
+        - 실시간 업데이트
+      - Static Collection
+        - `querySelectorAll()` 반환 NodeList
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .ssafy-location {
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello SSAFY</h1>
+       	<h2 id="location-header">Location</h2>
+        <div>
+            <ul>
+                <li class="ssafy-location">서울</li>
+                <li class="ssafy-location">대전</li>
+                <li class="ssafy-location">광주</li>
+                <li class="ssafy-location">구미</li>
+                <li class="ssafy-location">부울경</li>
+            </ul>
+        </div>
+    </body>
+    </html>
+    ```
+
+    ![image-20211028144204853](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211028144204853.png)
+
+  - 변경
+
+    - Creation
+      - `Document.createElement()` : 작성한 태그 명 HTML 생성 반환
+
+  ### Event
+
+  - `~하면 ~한다`
+
+  - handler
+
+    - `addEventListener()`
+      - `EventTarget.addEventListener()`
+        - 지정 이벤트가 대상 전달될 때마다 호출 함수 설정
+      - `target.addEventListener(type, listener[, options])`
+        - type
+          - 반응 이벤트 유형 : 대소문자 구분 문자열
+        - listener
+          - 지정 타입 이벤트 발생 시 알림 수신 객체
+          - EvenListener 인터페이스, JS function 객체 (콜백 함수)
+      - 대상에 특정 이벤트가 발생하면 할 일을 등록하자
+        - `EventTarget.addEventListener(type, listener)`
+        - `EventTarget` : 대상
+        - `type` : 특정 이벤트
+        - `listener` : 할 일
+
+  - 취소
+
+    - `Event.preventDefault()`
+    - 현재 이벤트 기본 동작 중단
+
+  - 실습
+
+    ```html
+    <form action="/todo/">
+        <input type="text">
+        <button>Add</button>
+    </form>
+    <ul>
+        
+    </ul>
+    ```
+
+    ```javascript
+    // 이벤트 타겟 설정
+    const form = document.querySelector('form')
+    
+    function addTodo (event) {
+        // event 기본 동작 X
+        event.preventDefault()
+        
+        // input 요소 선택, value 값 저장
+        const input = document.querySelector('input')
+        const content = input.value
+        
+        if (content.trim()) {
+            // 새로운 li 요소 생성, input value -> innerText
+            const li = document.createElement('li')
+            li.innerText = content
+            
+            // ul 요소 선택, ul 자식 요소 -> li 요소
+            const ul = document.querySelector('ul')
+            ul.appendChild(li)
+        } else {
+            alert('할 일을 입력해주세요')
+        }
+        event.target.reset()
+    }
+    
+    form.addEventListener('submit', addTodo)
+    ```
+
+    
+
 ## ECMAScript 6
 
 ### Introduction
@@ -306,7 +520,7 @@
 
     - 함수 (Functions), 배열 (Arrays), 객체 (Objects)
 
-  ![image-20211101132932537](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101132932537.png)
+  ![image-20211101132932537](C:\Users\j2woo\AppData\Roaming\Typora\typora-user-images\image-20211101132932537.png)
 
 #### 연산자
 
@@ -1102,3 +1316,241 @@
   ```
 
   
+
+## AJAX
+
+- AJAX
+
+  - Asynchronous JavaScript And XML (비동기식 JavaScript와 XML)
+  - 서버 통신 -> `XMLHttpRequest`
+
+- 특징
+
+  - 비동기성 : 전체 reload (새로고침) 안해도 수행
+    - event 있으면 일부 업데이트 가능
+  - 페이지 새로고침 없이 서버 요청
+  - 서버에서 데이터 받고 작업 수행
+
+- `XMLHttpRequest`
+
+  - 전체 페이지 새로고침 없이 데이터 받음
+  - 모든 종류 데이터 받기
+
+  ```javascript
+  const request = new XMLHttpRequest()
+  const URL = 'https://jsonplaceholder.typicode.com/todos/1/'
+  
+  request.open('GET', URL)
+  request.send()
+  
+  const todo = request.response
+  console.log('data: ${todo}')
+  ```
+
+## Asynchronous JavaScript
+
+- 동기식
+
+  - 순차적, 직렬적 task 수행
+  - 요청 보낸 후 응답 받아야지 다음 동작 : blocking
+
+  ![image-20211101170836364](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101170836364.png)
+
+  ```html
+  <button>버튼</button>
+  
+  <script>
+  	const btn = document.querySelector('button')
+     	
+      btn.addEventListener('click', function() {
+          alert('You clicked me!')
+          const pElem = document.createElement('p')
+          pElem.innerText = 'sample text'
+          document.body.appendChild(pElem)
+      })
+  </script>
+  ```
+
+  - 버튼 클릭 후 alert 메세지 확인 버튼 누를때까지 문장 X
+    - alert 이후 코드 : alert 처리 끝날 때까지 실행 X
+    - `JavaScript는 single threaded`
+
+  ![image-20211101212427252](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101212427252.png)
+
+- 비동기식
+
+  - 병렬적 Task 수행 : non-blocking
+
+  ![image-20211101212722053](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101212722053.png)
+
+  ```javascript
+  const request = new XMLHttpRequest()
+  const URL = 'https://jsonplaceholder.typicpde.com/todos/1/'
+  
+  request.open('GET', URL)
+  request.send() // XMLHttpRequest 요청
+  
+  const todo = request.response // 빈 응답 값 todo에 할당
+  console.log('data: ${todo}') // console.log 실행
+  ```
+
+  ![image-20211101215533400](C:\Users\j2woo\Desktop\ssafy6\TIL\img\image-20211101215533400.png)
+
+  - 요청 보내고 응답 기다리지 않고 다음 코드 실행
+  - 변수 todo -> 응답 데이터 할당 X, 빈 데이터 출력
+  - 기다리는 방식으로 동작
+    - `JavaScript는 single threaded`
+
+- `JavaScript는 single threaded`
+
+  - 여러 개의 CPU가 있어도 main thread 단일 스레드에서만 작업 수행
+  - 이벤트 처리 Call Stack이 하나
+    - 즉시 처리하지 못하는 이벤트 -> Web API에서 처리
+    - 처리된 이벤트 -> Task Queue에서 대기
+    - Call Stack이 비면 Event Loop가 Task Queue에서 Call Stack으로 보냄
+
+- Concurrency model : Event Loop 기반 동시성 모델
+
+  - Call Stack
+    - 요청 올때마다 해당 요청 순차 처리 LIFO 형태 자료 구조
+  - Web API (Browser API)
+    - `setTimeout()`, DOM events, AJAX -> 데이터를 가져오는 시간이 소요되는 일 처리
+  - Task Queue (Event Queue, Message Queue)
+    - 비동기된 callback 함수가 대기하는 FIFO 형태 자료 구조
+    - main thread 종료 후 실행 -> 후속 JavaScript 코드 차단 방지
+  - Event Loop
+    - Call Stack 비어있는지 확인
+    - 비어있을 때 Task Queue에서 대기 중인 callback 함수 있는지 확인
+    - 있으면 가장 앞 callback 함수 Call Stack으로 push
+
+### callback Function
+
+- Callback function
+  - 다른 함수에 인자로 전달된 함수
+  - 외부 함수 내에서 호출 
+  - 비동기 콜백 (asynchronous callback) : 비동기 작업 완료 후 코드 실행 계속 사용
+- 일급 객체 (First Class Object)
+  - 일급 객체 (함수)
+    - 다른 객체 적용 가능한 연산 모두 지원
+  - 조건
+    - 인자로 넘길 수 있어야 함
+    - 함수 반환 값으로 사용 가능
+    - 변수 할당 가능
+- Async callbacks
+  - 백그라운드에서 코드 실행 시작 함수 호출 시 인자로 지정된 함수
+  - 백그라운드 코드 실행 종료 -> callback 함수 호출 => 작업 완료 알리거나 다음 작업 실행
+- Callback
+  - 특정 루틴, action에 의해 호출
+- Callback Hell
+  - 여러 개 연쇄 비동기 작업
+  - 디버깅, 코드 가독성 문제
+  - 해결 : Promise callbacks
+
+### Promise
+
+- Promise object
+
+  ```javascript
+  const myPromise = axios.get(URL)
+  // console.log(myPromise) // Promise Object
+  
+  myPromise
+  	.then(response => {
+      	return response.data
+  })
+  
+  // chaining
+  axios.get(URL)
+  	.then(response => {
+      	return response.data
+  	})
+  	.then(response => {
+      	return response.title
+  	})
+  	.catch(error => {
+      	console.log(error)
+  	})
+  	.finally(function () {
+      	console.log('나는 마지막에 무조건 시행')
+  	})
+  ```
+
+  - 비동기 작업 최종 완료, 실패 나타내는 객체
+    - 미래 완료, 실패, 그 결과 값
+    - 미래 상황 약속
+  - 성공 : `.then()`, 실패 : `.catch()`
+
+- Promise methods
+
+  - `.then(callback)`
+    - 이전 작업 (promise) 성공/이행 시 수행 작업
+    - 각 callback -> 이전 작업 성공 결과 인자로 전달 받음
+    - 성공 시 코드 -> callback 함수 안
+    - 여러 개 사용 (chaining) -> 연쇄 작업 가능 => 여러 비동기 작업 차례 수행 가능
+  - `catch(callback)`
+    - `.then` 하나라도 실패/거부 시 동작 -> `try - except`와 유사
+  - 반환 값 필수
+  - `.finally(callback)`
+    - promise 객체 반환
+    - 결과 상관 없이 지정된 callback 함수 실행
+    - 어떤 인자도 전달받지 X : 성공 여부 모름
+    - 무조건 실행되어야 하는 절 : 코드 중복 방지
+
+- 보장
+
+  - callback 함수: Event Loop가 현재 실행 중인 Call Stack 완료 이전 호출 X
+  - `.then()` 여러 번 사용 -> 여러 개 callback 함수 추가 가능 : Chaining
+
+### Axios
+
+```javascript
+axios.get('http://jsonplaceholder.typicode.com/todos/1/') // Promise return
+	.then(...)
+    .catch(...)
+```
+
+```javascript
+// XMLHttpRequest -> Axios 변경
+// XMLHttpRequest
+const request = new XMLHttpRequest()
+const URL = 'https://jsonplaceholder.typicode.com/todos/1/'
+
+request.open('GET', URL)
+request.send()
+
+const todo = request.response
+console.log(todo)
+
+// Axios
+const URL = 'https://jsonplaceholder.typicode.com/todos/1/'
+
+axios.get(URL)
+	.then(response => {
+    	console.log(response.data)
+	})
+```
+
+```javascript
+// Axios 예시
+
+const URL = 'https://jsonplaceholder.typicode.com/todos/1/'
+
+axios.get(URL)
+	.then(function (response) {
+    	console.log(response)
+    	return response.data
+	})
+	.then(function (data) {
+    	return data.title
+	})
+    .then(function (title) {
+        console.log(title)
+    })
+	.catch(function (error) {
+    	console.log(error)
+	})
+	.finally(function () {
+    	console.log('나는 마지막에 무조건 시행')
+	})
+```
+
